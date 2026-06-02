@@ -2,8 +2,10 @@ import json
 import random
 from dataclasses import dataclass
 from enum import Enum
-from typing import Optional, List
-from config import QUESTIONS_FILE, TOTAL_QUESTIONS
+from pathlib import Path
+from typing import List, Optional
+
+from config import DEFAULT_PROFILE, PROFILES_DIR, TOTAL_QUESTIONS
 
 
 class QuestionType(str, Enum):
@@ -29,15 +31,16 @@ class Question:
 
 
 class QuestionBank:
-    def __init__(self, file_path=QUESTIONS_FILE):
+    def __init__(self, profile_name: str = DEFAULT_PROFILE):
+        self.profile_name = profile_name
         self.questions: List[Question] = []
         self.question_pool: List[Question] = []
-        self._load_questions(file_path)
+        questions_path = PROFILES_DIR / profile_name / "questions.json"
+        self._load_questions(questions_path)
 
-    def _load_questions(self, file_path):
+    def _load_questions(self, file_path: Path):
         with open(file_path) as f:
             data = json.load(f)
-
         for q_data in data["questions"]:
             q = Question(
                 id=q_data["id"],
@@ -52,6 +55,14 @@ class QuestionBank:
             self.question_pool.append(q)
         self.questions = self.question_pool.copy()
 
+    def get_interview_size(self) -> int:
+        """Return total_questions_per_interview from profile config."""
+        profile_path = PROFILES_DIR / self.profile_name / "profile.json"
+        if profile_path.exists():
+            with open(profile_path) as f:
+                return json.load(f).get("total_questions_per_interview", TOTAL_QUESTIONS)
+        return TOTAL_QUESTIONS
+
     def get_question(self, index: int) -> Optional[Question]:
         if 0 <= index < len(self.questions):
             return self.questions[index]
@@ -60,6 +71,9 @@ class QuestionBank:
     def get_total_count(self) -> int:
         return len(self.questions)
 
+    def get_pool_size(self) -> int:
+        return len(self.question_pool)
+
     def get_by_topic(self, topic: str) -> List[Question]:
         return [q for q in self.question_pool if q.topic == topic]
 
@@ -67,32 +81,27 @@ class QuestionBank:
         return sorted(set(q.topic for q in self.question_pool))
 
     def get_random_interview(self) -> List[Question]:
-        """Get a random sample of questions for a new interview.
-
-        Ensures balanced representation across topics and difficulty levels.
-        """
+        """Random balanced sample across topics. Size driven by profile config."""
+        interview_size = self.get_interview_size()
         topics = self.get_topics()
-        questions_per_topic = TOTAL_QUESTIONS // len(topics)
+        questions_per_topic = interview_size // len(topics)
 
-        selected_questions = []
+        selected: List[Question] = []
         for topic in topics:
-            topic_questions = self.get_by_topic(topic)
-            sample_size = min(questions_per_topic, len(topic_questions))
-            selected = random.sample(topic_questions, sample_size)
-            selected_questions.extend(selected)
+            pool = self.get_by_topic(topic)
+            selected.extend(random.sample(pool, min(questions_per_topic, len(pool))))
 
-        # If we need more questions to reach TOTAL_QUESTIONS
-        remaining = TOTAL_QUESTIONS - len(selected_questions)
+        # Top-up if rounding left us short
+        remaining = interview_size - len(selected)
         if remaining > 0:
-            available = [q for q in self.question_pool if q not in selected_questions]
-            selected_questions.extend(random.sample(available, min(remaining, len(available))))
+            available = [q for q in self.question_pool if q not in selected]
+            selected.extend(random.sample(available, min(remaining, len(available))))
 
-        # Shuffle to avoid topic clustering
-        random.shuffle(selected_questions)
-        self.questions = selected_questions[:TOTAL_QUESTIONS]
+        random.shuffle(selected)
+        self.questions = selected[:interview_size]
         return self.questions
 
     def get_by_ids(self, question_ids: List[int]) -> List[Question]:
-        """Retrieve questions by their IDs, maintaining the order of IDs."""
-        id_to_question = {q.id: q for q in self.question_pool}
-        return [id_to_question[qid] for qid in question_ids if qid in id_to_question]
+        """Retrieve questions by their IDs, preserving order."""
+        lookup = {q.id: q for q in self.question_pool}
+        return [lookup[qid] for qid in question_ids if qid in lookup]

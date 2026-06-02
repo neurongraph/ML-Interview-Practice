@@ -1,0 +1,68 @@
+# Interview Profile Template
+# ─────────────────────────────────────────────────────────────────────────────
+# USAGE:
+#   Option 1 - From this file:
+#     cp profiles/template.yaml profiles/my-profile.yaml
+#     # edit my-profile.yaml
+#     just create-profile --from-file profiles/my-profile.yaml
+#     just generate --profile my-profile
+#
+#   Option 2 - Interactive wizard:
+#     just create-profile
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Unique identifier (lowercase, hyphens only, e.g. "backend-engineer")
+name: my-profile
+
+# Human-readable description shown at interview start
+description: "My Custom Interview Profile"
+
+# How many questions to draw per interview session (randomly sampled from the pool)
+total_questions_per_interview: 15
+
+topics:
+  - name: "Topic Name"
+    # Subtopics help the LLM focus question generation. Be specific.
+    subtopics:
+      - "Core concept A"
+      - "Core concept B"
+      - "Advanced pattern C"
+      - "Practical application D"
+
+    # Total questions to generate for this topic (building the pool)
+    question_count: 16
+
+    # How many questions at each difficulty level
+    difficulty_mix:
+      beginner: 4       # Foundational: definitions, basic usage
+      intermediate: 8   # Applied: patterns, trade-offs, common pitfalls
+      advanced: 4       # Deep: internals, architecture, optimization
+
+    # How many questions of each type
+    type_mix:
+      multiple_choice: 6   # Instant-scored, tests breadth
+      open_ended: 6        # LLM-evaluated, tests depth of reasoning
+      coding: 4            # LLM-evaluated, tests implementation ability
+
+  - name: "Another Topic"
+    subtopics:
+      - "Subtopic A"
+      - "Subtopic B"
+      - "Subtopic C"
+    question_count: 16
+    difficulty_mix:
+      beginner: 4
+      intermediate: 8
+      advanced: 4
+    type_mix:
+      multiple_choice: 8   # More MC for fact-heavy topics
+      open_ended: 6
+      coding: 2            # Fewer coding if topic is less implementation-focused
+
+# TIPS:
+#   - question_count should be >= total_questions_per_interview / number_of_topics
+#     so each topic has enough questions for multiple practice attempts
+#   - difficulty_mix and type_mix values are ratios, not hard counts
+#     (the generator rounds proportionally)
+#   - For non-coding topics (e.g. System Design, Leadership), set coding: 0
+#     and increase open_ended accordingly

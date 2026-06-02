@@ -1,528 +1,434 @@
-# ML/Data Engineering Interview Prep Portal
+# Interview Prep Portal
 
-A CLI-based interview preparation tool that helps candidates practice for machine learning and data engineering roles using Ollama as the evaluation backend.
+A CLI-based interview preparation tool that works for **any technical role**. Define your topics, generate a question bank using a local LLM (Ollama), then practice with randomised sessions and instant AI-powered feedback — all locally, all private.
 
-## Quick Start (30 seconds)
+## Quick Start
 
 ```bash
-# 1. Install uv (if you don't have it)
+# 1. Install uv (fast Python package manager)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# 2. Install just (if you don't have it)
+# 2. Install just (command runner)
 brew install just          # macOS
-# or: cargo install just   # Any platform with Rust
+# cargo install just       # Any platform with Rust
 
-# 3. Install Ollama and start it
-ollama run ministral-3:14b
+# 3. Install Ollama, then pull a model
+brew install ollama        # macOS
+ollama pull ministral-3:14b
 
-# 4. In a new terminal, set up the project
-cd ML_Interview_practice
-cp .env.example .env       # Create .env with default settings
+# 4. Set up the project
+git clone https://github.com/neurongraph/ML-Interview-Practice.git
+cd ML-Interview-Practice
+cp .env.example .env
 just install
 
-# 5. Start practicing!
+# 5. Start practising (ML/Data Engineering profile included out of the box)
 just start
 ```
 
-## Features
+---
 
-- **80 Comprehensive Questions** (16 per topic) allowing for **4+ practice attempts** without repetition:
-  - Advanced Python (16 questions)
-  - ML Ecosystem (16 questions)
-  - Databricks (16 questions)
-  - ML Fundamentals (16 questions)
-  - MLOps (16 questions)
+## What's Included
 
-- **Randomized Question Selection**: Each interview randomly selects 15 questions with balanced representation across topics and difficulty levels
+The repo ships with a ready-to-use **ML/Data Engineering** profile (80 curated questions):
 
-- **Mixed Question Types**:
-  - Multiple Choice: Instant scoring
-  - Open-Ended: LLM-powered evaluation
-  - Coding Challenges: Code quality and correctness evaluation
+| Topic | Questions |
+|---|---|
+| Advanced Python | 16 |
+| ML Ecosystem | 16 |
+| Databricks | 16 |
+| ML Fundamentals | 16 |
+| MLOps | 16 |
 
-- **Session Management**: Save progress and resume interviews (same questions)
-- **Real-time Feedback**: Get detailed feedback on each answer
-- **Progress Tracking**: Monitor your performance by topic
-- **Local LLM Evaluation**: Uses Ollama for privacy-preserving assessment
-- **Multiple Practice Attempts**: With 80 questions available, candidates can practice 4+ times with different question combinations
+Each interview session randomly draws 15 questions (3 per topic), so you get a fresh mix every time across 4+ practice attempts.
 
-## Prerequisites
+---
 
-### 1. Install Ollama
+## Adapting to Any Interview Role
 
-Download and install Ollama from [ollama.ai](https://ollama.ai)
+The tool is fully generic — point it at any topics and it generates a question bank for you.
 
-### 2. Start Ollama with a Model
+### Workflow: New Role from Scratch
 
 ```bash
-ollama run mistral
-```
+# Step 1 — Create a profile (interactive wizard)
+just create-profile
 
-This will download and start the Mistral model (or use an existing one). The app expects Ollama to be running on `http://localhost:11434`.
+# Example wizard session:
+#   Profile name: backend-engineer
+#   Description:  Backend Engineering Interview Prep
+#   Total questions per session: 15
+#   Topic: Python
+#     Subtopics: async/await, decorators, OOP, data structures
+#     Questions to generate: 16
+#   Topic: PostgreSQL
+#     Subtopics: indexing, transactions, JSONB, query optimisation
+#     Questions to generate: 16
+#   Topic: Redis
+#     Subtopics: data types, pub/sub, caching patterns, persistence
+#     Questions to generate: 16
+#   (Enter to finish)
 
-### 3. Install uv (Fast Python Package Manager)
+# Step 2 — Generate questions (Ollama does the work, ~5-15 min)
+just generate --profile backend-engineer
 
-Install `uv` from [astral.sh/uv](https://astral.sh/uv):
+# Step 3 — Start practising
+just start --profile backend-engineer
 
-```bash
-# On macOS/Linux
-curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# On Windows
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
-
-Or use your package manager (Homebrew, pip, etc.).
-
-### 4. Install Just (Command Runner)
-
-Install `just` from [just.systems](https://just.systems):
-
-```bash
-# macOS
-brew install just
-
-# Linux
-curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to ~/.cargo/bin
-
-# Or with Cargo (if you have Rust)
-cargo install just
-
-# Or any other method from https://just.systems/
-```
-
-## Installation
-
-### Option 1: Quick Setup with Just (Recommended)
-
-```bash
-# Make sure Ollama is running first
-ollama run ministral-3:14b
-
-# In another terminal, install just (if needed)
-brew install just  # macOS
-# or: cargo install just
-
-# Then set up the project
-cd ML_Interview_practice
-cp .env.example .env       # Create .env file with default settings
-just install
-```
-
-This will:
-- Create a `.env` file with default configuration
-- Create a virtual environment with uv
-- Install all dependencies
-- Ready to go!
-
-### Option 2: Manual Setup
-
-1. Clone or navigate to this project directory
-
-2. Ensure Ollama is running:
-```bash
-ollama run mistral
-```
-
-3. Install dependencies with uv:
-```bash
-# Install dependencies in a virtual environment
-uv sync
-
-# Or if you prefer to also install optional dev dependencies
-uv sync --all-extras
-```
-
-4. Your virtual environment is now ready in `.venv/`
-
-## Usage
-
-### Using Just Commands (Easiest)
-
-```bash
-# Start a new interview
-just start
-
-# Resume your interview
-just resume
-
-# Check progress
+# Step 4 — Check your score
 just status
 
-# View all saved scores
-just view-scores
+# Later — resume if you stopped mid-session
+just resume
 
-# See all available commands
-just help
+# Want more questions on a weak topic?
+just augment --profile backend-engineer --topic PostgreSQL --count 8
 ```
 
-### Using uv Commands Directly
+### Workflow: Profile from a YAML File
 
 ```bash
-# Start a new interview
-uv run python main.py start
+# Copy the template and edit it
+cp profiles/template.yaml profiles/system-design.yaml
+# edit profiles/system-design.yaml with your topics/subtopics
 
-# Resume your interview
-uv run python main.py resume
+# Create profile from file (skips the wizard)
+just create-profile --from-file profiles/system-design.yaml
 
-# Check your status
-uv run python main.py status
+# Generate questions
+just generate --profile system-design
 
-# Get help
-uv run python main.py --help
+# Practice
+just start --profile system-design
 ```
 
-### Activate Virtual Environment (Optional)
-
-For shorter commands without `uv run`, activate the virtual environment:
+### Workflow: Adding More Questions to an Existing Topic
 
 ```bash
-# On macOS/Linux
-source .venv/bin/activate
+# Add 10 more advanced questions to a specific topic
+just augment --profile ml-engineering --topic MLOps --count 10
 
-# On Windows
-.venv\Scripts\activate
-
-# Now use shorter commands
-python main.py start
-python main.py resume
-python main.py status
-
-# Deactivate when done
-deactivate
+# Or pick interactively
+just augment --profile ml-engineering
+#   Available topics:
+#     0: Advanced Python  (16 questions)
+#     1: ML Ecosystem     (16 questions)
+#     2: Databricks       (16 questions)
+#     3: ML Fundamentals  (16 questions)
+#     4: MLOps            (16 questions)
+#   Select topic (number): 4
 ```
 
-## Question Randomization
+---
 
-Each interview randomly selects 15 questions from the pool of 80 available questions:
-- **Balanced by Topic**: Ensures representation across all 5 skill areas
-- **Variety in Difficulty**: Mix of beginner, intermediate, and advanced questions
-- **Multiple Attempts**: With 80 questions and random selection, you'll rarely see the same combination twice
+## All Commands
 
-Each session stores which questions were asked, so you can resume and complete the interview with the same set of questions.
+```bash
+# ── Setup ──────────────────────────────────────────────────────────
+just install                       # Install dependencies
 
-## Interview Format
+# ── Profile management ─────────────────────────────────────────────
+just create-profile                # Wizard to create a profile
+just create-profile --from-file profiles/my.yaml  # From YAML file
+just list-profiles                 # Show all profiles + question counts
+just delete-profile backend        # Delete a profile (asks confirmation)
 
-### Multiple Choice Questions
-- You'll see 4 options (numbered 0-3)
-- Enter the number of your choice
-- Instant feedback on correctness
+# ── Question generation ────────────────────────────────────────────
+just generate                      # Generate for a profile (interactive pick)
+just generate --profile backend    # Generate for a specific profile
+just augment                       # Add questions to a topic (interactive)
+just augment --profile backend --topic Python --count 8
 
-### Open-Ended Questions
-- Answer with detailed explanations (supports long answers!)
-- The LLM evaluator will assess your response based on:
-  - Correctness and accuracy
-  - Depth of understanding
-  - Clarity of explanation
-  - Relevant details and examples
-- Type **END** on a new line when finished
+# ── Interview ──────────────────────────────────────────────────────
+just start                         # Start new interview (pick profile if >1)
+just start --profile ml-engineering  # Start with a specific profile
+just resume                        # Resume last incomplete session
+just status                        # Status of last session
 
-### Coding Challenges
-- You'll be given a task or problem
-- Provide code (Python/pseudocode) - supports long multi-line code!
-- Evaluation criteria:
-  - Correctness
-  - Code quality and readability
-  - Performance and optimization
-  - Best practices
+# ── Scores ─────────────────────────────────────────────────────────
+just view-scores                   # List score files
+just list-sessions                 # Show recent sessions with scores
 
-## Tips for Typing Answers
+# ── Dev ────────────────────────────────────────────────────────────
+just lint                          # Run ruff linter
+just format                        # Format with black
+just clean                         # Remove cache files
+```
 
-- **No character limit**: You can write as long answers as needed
-- **Multi-line input**: Type normally across multiple lines
-- **Submit answer**: Type `END` on a new line to submit (not Enter twice!)
-- **Paste support**: Can paste code or long text directly
+---
 
-## Features During Interview
+## Profile Configuration (YAML)
 
-### Progress Tracking
-- Visual progress bar showing your position (█████░░░░)
-- Real-time score updates after each answer
-- Progress shown as: "Question 5/15 | Score: 85/100 | Progress: 5/15"
+Profiles are stored in `profiles/<name>/profile.json`. You can also author them in YAML using the template:
 
-### Time Tracking
-- Elapsed time shown during the interview
-- Total time displayed in final summary
-- Helps you pace yourself and monitor performance
+```yaml
+# profiles/template.yaml
+name: my-profile
+description: "My Interview Prep"
+total_questions_per_interview: 15
 
-### Answer Feedback
-- Immediate feedback spinner while answers are being evaluated
-- Detailed evaluation results:
-  - Your score (0-100)
-  - Feedback on your answer
-  - Strengths (what you did well)
-  - Improvements (areas to work on)
+topics:
+  - name: "Python"
+    subtopics:
+      - "async/await and concurrency"
+      - "decorators and metaclasses"
+      - "typing and type hints"
+      - "memory management"
+    question_count: 16          # Questions to generate for this topic
+    difficulty_mix:
+      beginner: 4               # Foundational concepts
+      intermediate: 8           # Applied knowledge, trade-offs
+      advanced: 4               # Deep internals, architecture
+    type_mix:
+      multiple_choice: 6        # Instant-scored, tests breadth
+      open_ended: 6             # LLM-evaluated, tests depth
+      coding: 4                 # LLM-evaluated, tests implementation
+```
+
+Copy `profiles/template.yaml`, fill it in, then:
+```bash
+just create-profile --from-file profiles/my-profile.yaml
+just generate --profile my-profile
+```
+
+---
+
+## During an Interview
+
+### Question Types
+
+**Multiple Choice** — enter the option number:
+```
+Question 1/15 (Python · intermediate)
+[█░░░░░░░░░░░░░░]
+
+What does the `__slots__` declaration do in a Python class?
+
+Options:
+  0: Restricts attribute creation to those listed
+  1: Makes all attributes read-only
+  2: Automatically generates __init__
+  3: Enables operator overloading
+
+Your answer (0-3): _
+```
+
+**Open-Ended** — write as much as you need, then type `END`:
+```
+Question 3/15 (MLOps · advanced)
+[███░░░░░░░░░░░░]
+
+Describe your approach to detecting and handling model drift in production.
+
+Your answer (type END on a new line when done):
+Model drift occurs when...
+...
+END
+```
+
+**Coding** — paste or type code, then type `END`:
+```
+Question 7/15 (Advanced Python · intermediate)
+[███████░░░░░░░░]
+
+Write a Python decorator that retries a function up to N times on exception.
+
+Your answer (type END on a new line when done):
+def retry(n):
+    def decorator(fn):
+        ...
+END
+```
+
+### After Each Answer
+
+Evaluation results appear immediately:
+```
+┌─ Evaluation ──────────────────────────────────────────────────────┐
+│ Score: 78/100                                                      │
+│                                                                    │
+│ Good understanding of retry logic with backoff. Missing           │
+│ type hints and the delay parameter isn't configurable.            │
+│                                                                    │
+│ Strengths:                                                         │
+│ Clean use of functools.wraps; handles exceptions correctly.       │
+│                                                                    │
+│ Improvements:                                                      │
+│ Add configurable delay/backoff; add type annotations;             │
+│ log retry attempts for observability.                             │
+└───────────────────────────────────────────────────────────────────┘
+Running avg: 72/100 | Progress: 7/15 | Elapsed: 14m 22s | Next: Q8
+```
+
+### Final Summary
+
+```
+┌─ Interview Complete! ─────────────────────────────────────────────┐
+│ Overall Score: 74/100                                              │
+│                                                                    │
+│ Score by Topic:                                                    │
+│   Advanced Python        82/100  [████████░░]                     │
+│   ML Ecosystem           71/100  [███████░░░]                     │
+│   Databricks             68/100  [██████░░░░]                     │
+│   ML Fundamentals        79/100  [███████░░░]                     │
+│   MLOps                  70/100  [███████░░░]                     │
+│                                                                    │
+│ Completed: 15/15 questions  |  Total Time: 42m 18s                │
+└───────────────────────────────────────────────────────────────────┘
+
+Recommended Areas to Study:
+  • Databricks (Score: 68/100)
+```
+
+---
 
 ## Scoring System
 
-- **Multiple Choice**: 0 (incorrect) or 100 (correct)
-- **Open-Ended**: 0-100 based on LLM evaluation
-- **Coding**: 0-100 based on code quality and correctness
+| Question Type | Scoring |
+|---|---|
+| Multiple Choice | 0 (wrong) or 100 (correct) |
+| Open-Ended | 0–100 via LLM rubric |
+| Coding | 0–100 via LLM code review |
 
-Your overall score is the average of all question scores.
+**LLM Rubric:**
+- 90–100 Excellent — complete, accurate, well-explained with examples
+- 70–89 Good — mostly correct with minor gaps
+- 50–69 Fair — shows understanding but missing key details
+- 30–49 Poor — incomplete or significant errors
+- 0–29 Very Poor — irrelevant, incorrect, or low-effort response
 
-## Session Storage
+---
 
-Sessions are stored in `~/.interview_prep/sessions/` as JSON files. Each session includes:
-- All answers provided
-- Scores for each question
-- Feedback and evaluation notes
-- Timestamps
-
-You can resume any incomplete session.
-
-## Configuration
-
-### Environment Variables (.env)
-
-Configuration is managed via a `.env` file. A `.env.example` file is provided:
+## Configuration (.env)
 
 ```bash
-# Copy the example to create your .env file
 cp .env.example .env
 ```
 
-**Edit `.env` to customize:**
-
 ```env
-# Ollama Model (default: ministral-3:14b)
-# Options: ministral-3:14b, granite4.1:8b, gemma4:e4b, phi4:latest
+# Ollama model (default: ministral-3:14b)
+# Other options: gemma4:e4b, phi4:latest, granite4.1:8b, llama3.2:3b
 OLLAMA_MODEL=ministral-3:14b
 
-# Ollama Server Address (default: http://localhost:11434)
-OLLAMA_HOST=http://localhost:11434
+# Ollama server (default: http://localhost:11434)
+# OLLAMA_HOST=http://localhost:11434
 
-# Request Timeout in seconds (default: 180)
-# Increase if you get timeout errors on slow systems
-OLLAMA_TIMEOUT=180
+# Request timeout in seconds (default: 180)
+# Increase if evaluation times out on slow hardware
+# OLLAMA_TIMEOUT=180
 ```
 
-### Code Configuration
+---
 
-For advanced configuration, edit `config.py`:
+## Project Layout
 
-- `SCORES_DIR`: Where score files are stored (default: `./scores`)
-- Evaluation prompts and criteria
-- Total questions per interview (default: 15)
+```
+main.py                    CLI entry point (typer)
+profile_manager.py         Profile CRUD and YAML import
+question_generator.py      LLM-based question generation
+questions.py               Question bank + random sampling
+evaluator.py               Answer evaluation routing
+ollama_client.py           Ollama REST API client
+session.py                 Session persistence (.md + .json)
+config.py                  Central configuration
 
-## About uv
+profiles/
+  template.yaml            Starter template (copy to create a profile)
+  ml-engineering/
+    profile.json           ML Engineering profile config
+    questions.json         80 curated questions (committed)
+  <your-profile>/
+    profile.json           Your profile config (committed)
+    questions.json         Generated questions (local only)
 
-`uv` is a fast, modern Python package installer and resolver written in Rust. Benefits:
+scores/                    Interview results as markdown (local only)
+pyproject.toml             Dependencies (uv)
+justfile                   Command runner (just)
+.env.example               Config template
+```
 
-- **Fast**: Significantly faster than pip for dependency resolution
-- **Reliable**: Deterministic dependency resolution
-- **Modern**: Single tool for package management and virtual environments
-- **Lock file**: `uv.lock` ensures reproducible builds across environments
+---
 
-### Common uv Commands
+## Score Files
+
+Each session is saved in `scores/` as a markdown file:
+
+```
+scores/
+  abc12345.md        ← human-readable score report
+  abc12345.json      ← machine-readable session data (for resume)
+```
+
+Score files are **local only** (`.gitignore`d). View them with:
 
 ```bash
-# Sync dependencies (create venv and install)
-uv sync
-
-# Add a new dependency
-uv add numpy
-
-# Add a dev dependency
-uv add --dev pytest
-
-# Update dependencies
-uv update
-
-# Run a command in the virtual environment
-uv run python script.py
-
-# Activate virtual environment for direct access
-source .venv/bin/activate
+just view-scores               # list recent files
+cat scores/<session-id>.md     # open a specific report
 ```
 
-For more information, visit [astral.sh/uv](https://astral.sh/uv)
+---
+
+## Prerequisites
+
+### Ollama
+
+Install from [ollama.ai](https://ollama.ai) then pull a model:
+
+```bash
+ollama pull ministral-3:14b    # default — good quality/speed balance
+ollama pull phi4:latest        # lighter weight
+ollama pull gemma4:e4b         # fast
+```
+
+The app talks to Ollama at `http://localhost:11434` by default.
+
+### uv
+
+Fast Python package manager — [astral.sh/uv](https://astral.sh/uv):
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh   # macOS/Linux
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"  # Windows
+```
+
+### just
+
+Command runner — [just.systems](https://just.systems):
+
+```bash
+brew install just              # macOS
+cargo install just             # Rust toolchain
+```
+
+---
 
 ## Troubleshooting
 
 ### "Ollama is not running"
-Make sure you've started Ollama in a terminal:
 ```bash
-ollama run mistral
+ollama serve                   # start the server
+ollama pull ministral-3:14b    # pull the model if not present
 ```
 
-### "Connection refused"
-Check that:
-1. Ollama is running
-2. It's accessible at `http://localhost:11434`
-3. No firewall is blocking the connection
-
-### Slow Evaluation
-LLM evaluation takes time (10-30 seconds typically). This is normal. The app is thinking deeply about your answers.
-
-### Model Download
-On first run with a model, Ollama will download it (can take a few minutes).
-
-### Timeout Errors
-
-If you get timeout errors during evaluation:
-
-```
-Failed to call Ollama: ... timeout
-```
-
-Increase the timeout in `.env`:
-
+### Timeout during question generation or evaluation
+Increase `OLLAMA_TIMEOUT` in `.env`:
 ```env
-# Increase from default 180 to 300 seconds
 OLLAMA_TIMEOUT=300
 ```
 
-**When to increase timeout:**
-- Slow computer or network
-- Using larger models (llama2, dolphin-mixtral)
-- First evaluation after model load
+### Generated questions are low quality
+Try a larger/smarter model:
+```env
+OLLAMA_MODEL=gemma4:31b-cloud
+```
 
-### Changing Ollama Models
-
-To use a different model:
-
+### Profile has no questions yet
 ```bash
-# 1. List available models
-ollama list
-
-# 2. Download a new model (if needed)
-ollama pull llama2
-
-# 3. Update .env file
-# Change: OLLAMA_MODEL=ministral-3:14b
-# To:     OLLAMA_MODEL=llama2
-
-# 4. Run interview
-just start
+just generate --profile <name>
 ```
 
-**Recommended models for interviews:**
-- **ministral-3:14b** (default) - Best quality, good for evaluations
-- **granite4.1:8b** - Lightweight alternative
-- **gemma4:e4b** - Fast and capable
-- **phi4:latest** - Memory efficient
-
-## Example Workflow
-
-### Using Just Commands (Recommended)
-
+### Resume opens wrong profile
+`just resume` always loads the **most recent session**, so it'll use whichever profile was last active. To start a fresh session on a different profile:
 ```bash
-# Set up the project (first time only)
-just install
-
-# Start a new interview
-just start
-
-# Answer all 15 questions
-# ... you'll get feedback after each
-
-# Check your results
-just status
-
-# View your saved scores in markdown
-just view-scores
-
-# Later, resume to finish if incomplete
-just resume
-
-# Or start fresh with new questions
-just start
+just start --profile <name>
 ```
-
-### Using uv Commands Directly
-
-```bash
-# Set up the project (first time only)
-uv sync
-
-# Start a new interview
-uv run python main.py start
-
-# Check your results
-uv run python main.py status
-
-# Resume to finish if incomplete
-uv run python main.py resume
-```
-
-### Using Direct Python (After Activation)
-
-```bash
-# Activate environment first
-source .venv/bin/activate
-
-# Then use direct Python commands
-python main.py start
-python main.py status
-python main.py resume
-
-# Deactivate when done
-deactivate
-```
-
-## Score Storage
-
-Your interview scores are stored locally in the `scores/` folder as **markdown files**:
-
-```
-scores/
-  ├── session-id-1.md        # Interview 1 results
-  ├── session-id-2.md        # Interview 2 results
-  └── session-id-3.md        # Interview 3 results
-```
-
-Each markdown file contains:
-- Overall score and breakdown by topic
-- Detailed feedback for each answer
-- Progress tracking
-- Timestamps
-
-**View your scores:**
-```bash
-just view-scores              # List and open scores folder
-cat scores/session-id-1.md    # View a specific score file
-```
-
-Scores are stored locally (not in cloud) so your interview data stays private.
-
-## Tips for Preparation
-
-1. **Take Your Time**: These aren't timed. Think deeply about your answers.
-2. **Be Specific**: Provide detailed explanations and examples.
-3. **Show Your Work**: For coding questions, explain your approach.
-4. **Review Feedback**: Read the feedback carefully to identify weak areas.
-5. **Practice Multiple Times**: Start a new session for fresh questions. With 80 total questions, you can practice 4+ times with different question combinations.
-6. **Track Progress**: Use `python main.py status` to monitor your improvement across attempts.
-7. **Focus on Weak Areas**: Pay special attention to topics with lower scores across multiple attempts.
-
-## Architecture
-
-```
-main.py                - CLI interface (typer)
-questions.py           - Question management
-questions_data.json    - Question database (80 questions)
-ollama_client.py       - Ollama API integration
-evaluator.py           - Answer evaluation logic
-session.py             - Session persistence (saves markdown scores)
-config.py              - Configuration
-
-pyproject.toml         - Project metadata and dependencies (uv)
-justfile               - Just commands (just start, just resume, etc.)
-.gitignore             - Git ignore rules
-
-scores/                - Local folder storing interview scores as markdown files
-```
-
-## Project Files
-
-- **pyproject.toml**: Modern Python project configuration with uv. Defines dependencies, Python version, and project metadata.
-- **justfile**: Command runner using Just. Convenient commands for common tasks (install, start, resume, status, clean, view-scores, etc.)
-- **scores/**: Local folder containing interview results as markdown files (stored in .gitignore)
-- **requirements.txt**: Legacy format (kept for reference; use `pyproject.toml` instead)
-
-## Notes
-
-- All evaluation is done locally via Ollama, so your answers remain private.
-- The evaluation is based on a language model (Mistral), so it may not be perfect, but provides valuable feedback.
-- Questions are fixed and progressive, from beginner to advanced difficulty.

@@ -42,10 +42,16 @@ wheels/
 *~
 .DS_Store
 
-# Interview prep scores
+# Interview prep scores (local only — private)
 scores/
 scores/*.md
 scores/*.json
+
+# Generated question banks for user-created profiles
+# (profile.json configs ARE committed; generated questions.json are local)
+profiles/*/questions.json
+# Exception: the curated ml-engineering questions are committed
+!profiles/ml-engineering/questions.json
 
 # Logs
 *.log

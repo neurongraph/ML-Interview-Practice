@@ -10,13 +10,16 @@ OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "ministral-3:14b")
 OLLAMA_TIMEOUT = int(os.getenv("OLLAMA_TIMEOUT", "180"))  # seconds
 
-# Scores Storage (local to project)
+# Storage paths (local to project)
 SCORES_DIR = Path(__file__).parent / "scores"
 SCORES_DIR.mkdir(parents=True, exist_ok=True)
 
-# Interview Configuration
-TOTAL_QUESTIONS = 15
-QUESTIONS_FILE = Path(__file__).parent / "questions_data.json"
+PROFILES_DIR = Path(__file__).parent / "profiles"
+PROFILES_DIR.mkdir(parents=True, exist_ok=True)
+
+# Defaults
+DEFAULT_PROFILE = "ml-engineering"
+TOTAL_QUESTIONS = 15  # fallback when no profile config found
 
 # Scoring Rubric for LLM Evaluation
 EVALUATION_PROMPT_TEMPLATE = """You are an expert technical interviewer. Rate this answer from 0-100.
@@ -41,7 +44,7 @@ FEEDBACK: [1-2 sentences explaining the score]
 STRENGTHS: [1-2 specific things done well]
 IMPROVEMENTS: [2-3 specific areas to improve]"""
 
-CODING_EVALUATION_PROMPT = """You are an expert Python/Databricks code reviewer. Evaluate this code solution.
+CODING_EVALUATION_PROMPT = """You are an expert code reviewer. Evaluate this code solution.
 
 SCORING GUIDELINES:
 - 90-100: Excellent - Works correctly, clean code, handles edge cases, follows best practices
