@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ml-interview-prep"
+version = "1.0.0"
+description = "CLI-based interview preparation portal for ML/Data Engineering roles with Ollama backend"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    {name = "Interview Prep Team"}
+]
+license = {text = "MIT"}
+
+dependencies = [
+    "typer>=0.9.0",
+    "requests>=2.31.0",
+    "pydantic>=2.0.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+interview = "main:app"
+
+[tool.uv]
+python-version = "3.9"
+
+[tool.black]
+line-length = 100
+target-version = ['py39']
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+select = ["E", "F", "W"]

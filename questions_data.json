@@ -1,0 +1,798 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Advanced Python",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is the primary difference between a package and a module in Python?",
+      "options": [
+        "A package is a directory containing modules and __init__.py, while a module is a single .py file",
+        "A package is faster than a module",
+        "A module can contain packages, but not vice versa",
+        "There is no difference; the terms are synonymous"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Understanding of Python package structure"
+    },
+    {
+      "id": 2,
+      "topic": "Advanced Python",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is the purpose of __init__.py in a Python package?",
+      "options": [
+        "It marks the directory as a package and can contain initialization code",
+        "It is required for the package to run",
+        "It stores metadata about the package",
+        "It is deprecated and no longer needed"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Understanding of package structure"
+    },
+    {
+      "id": 3,
+      "topic": "Advanced Python",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "Describe how you would design a Python SDK for a machine learning platform. What principles would you follow for maintainability and reusability?",
+      "evaluation_criteria": "SDK design principles, modularity, dependency management, API design, documentation considerations"
+    },
+    {
+      "id": 4,
+      "topic": "Advanced Python",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "Explain the concept of virtual environments in Python and why they're essential for package development. How would you manage dependencies across multiple projects?",
+      "evaluation_criteria": "Virtual environment understanding, dependency isolation, version management, best practices"
+    },
+    {
+      "id": 5,
+      "topic": "Advanced Python",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Review this dependency management pattern for a Python package. How would you improve it?\n\n```python\nimport pandas as pd\nimport numpy as np\nimport sklearn\nfrom sklearn.preprocessing import StandardScaler\n\ndef preprocess_data(df):\n    scaler = StandardScaler()\n    return scaler.fit_transform(df)\n\ndef train_model(X, y):\n    from sklearn.ensemble import RandomForestClassifier\n    model = RandomForestClassifier()\n    model.fit(X, y)\n    return model\n```\n\nFocus on: imports organization, lazy loading, dependency clarity, and structure.",
+      "evaluation_criteria": "Import organization, dependency management, code structure, best practices"
+    },
+    {
+      "id": 6,
+      "topic": "Advanced Python",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Design a Python class hierarchy for a feature engineering library that supports: custom transformers, pipeline composition, and serialization. Consider extensibility and type hints.",
+      "evaluation_criteria": "OOP design, extensibility, type hints, serialization patterns, composability"
+    },
+    {
+      "id": 7,
+      "topic": "Advanced Python",
+      "difficulty": "intermediate",
+      "type": "multiple_choice",
+      "text": "What is the purpose of setup.py in a Python package?",
+      "options": [
+        "To define package metadata, dependencies, and configuration for distribution",
+        "To initialize the package when imported",
+        "To run unit tests before installation",
+        "To manage virtual environments"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Package distribution knowledge"
+    },
+    {
+      "id": 8,
+      "topic": "Advanced Python",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "How would you handle backward compatibility when releasing updates to a Python library? Discuss versioning strategies and deprecation processes.",
+      "evaluation_criteria": "Semantic versioning, deprecation patterns, backward compatibility, changelog management"
+    },
+    {
+      "id": 9,
+      "topic": "ML Ecosystem",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "Which of these is NOT a typical step in a scikit-learn ML pipeline?",
+      "options": [
+        "Feature scaling with StandardScaler",
+        "Model training with fit()",
+        "Automatic hyperparameter tuning without GridSearchCV",
+        "Model evaluation with metrics"
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "Understanding of scikit-learn workflow"
+    },
+    {
+      "id": 10,
+      "topic": "ML Ecosystem",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is the primary purpose of pandas in data science workflows?",
+      "options": [
+        "Data manipulation, cleaning, and exploratory analysis using DataFrames",
+        "Building and training machine learning models",
+        "Distributed computing at scale",
+        "Visualizing data in real-time"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Understanding of pandas role"
+    },
+    {
+      "id": 11,
+      "topic": "ML Ecosystem",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "You're working with a large dataset using PySpark. How would you use MLflow to track your experiments? What information should you log?",
+      "evaluation_criteria": "MLflow usage, experiment tracking, metrics logging, model versioning, parameter management"
+    },
+    {
+      "id": 12,
+      "topic": "ML Ecosystem",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "Compare and contrast scikit-learn and PySpark for machine learning tasks. When would you choose one over the other?",
+      "evaluation_criteria": "Framework comparison, scalability considerations, use case analysis, tradeoffs"
+    },
+    {
+      "id": 13,
+      "topic": "ML Ecosystem",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Write a pandas-based feature engineering pipeline that handles: missing values, categorical encoding, and outlier detection. Ensure it's reusable and handles edge cases.\n\nThe pipeline should be composable and work with sklearn's Pipeline.",
+      "evaluation_criteria": "Pandas proficiency, data quality handling, sklearn integration, code reusability, error handling"
+    },
+    {
+      "id": 14,
+      "topic": "ML Ecosystem",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Implement an MLflow-based experiment tracker that logs models, metrics, and hyperparameters from multiple runs. Include functionality for model comparison and retrieval.",
+      "evaluation_criteria": "MLflow API usage, experiment management, model registry integration, code organization"
+    },
+    {
+      "id": 15,
+      "topic": "ML Ecosystem",
+      "difficulty": "intermediate",
+      "type": "multiple_choice",
+      "text": "What does MLflow's tracking server do?",
+      "options": [
+        "Records metrics, parameters, and artifacts from ML experiments for comparison and analysis",
+        "Automatically optimizes model hyperparameters",
+        "Converts models to different frameworks",
+        "Distributes training across multiple machines"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "MLflow tracking concepts"
+    },
+    {
+      "id": 16,
+      "topic": "ML Ecosystem",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "Design a production ML pipeline using PySpark and MLflow. Address: data ingestion, feature engineering, model training, evaluation, and deployment readiness. How would you handle monitoring?",
+      "evaluation_criteria": "End-to-end pipeline design, production readiness, monitoring strategy, scalability"
+    },
+    {
+      "id": 17,
+      "topic": "Databricks",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is Unity Catalog's primary purpose in Databricks?",
+      "options": [
+        "To provide centralized governance and metadata management for data and AI assets",
+        "To replace Apache Spark",
+        "To serve as a query optimization engine",
+        "To manage cluster configurations"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Understanding of Unity Catalog purpose"
+    },
+    {
+      "id": 18,
+      "topic": "Databricks",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is a Databricks job?",
+      "options": [
+        "A scheduled or triggered workflow that runs notebooks or code on clusters",
+        "A type of cluster configuration",
+        "An MLflow experiment tracker",
+        "A data governance tool"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Databricks jobs understanding"
+    },
+    {
+      "id": 19,
+      "topic": "Databricks",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "Explain how you would structure a multi-environment Databricks workspace (dev, staging, prod) with Unity Catalog. What are the key considerations for data security and access control?",
+      "evaluation_criteria": "Workspace design, environment separation, catalog structure, access control, data security best practices"
+    },
+    {
+      "id": 20,
+      "topic": "Databricks",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "What are the key differences between Databricks workflows and simple scheduled notebooks? When would you use each?",
+      "evaluation_criteria": "Workflow vs scheduling understanding, orchestration concepts, use case analysis"
+    },
+    {
+      "id": 21,
+      "topic": "Databricks",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Design a Databricks job that orchestrates a feature engineering workflow using Delta Lake. Consider: incremental processing, data quality checks, and rollback mechanisms.\n\nProvide pseudo-code or Python that shows: job definition, Delta operations, and error handling.",
+      "evaluation_criteria": "Delta Lake understanding, job orchestration, incremental processing, data quality, error resilience"
+    },
+    {
+      "id": 22,
+      "topic": "Databricks",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Implement a multi-stage data pipeline in Databricks that: ingests raw data, applies transformations with Delta Lake MERGE operations, runs quality checks, and triggers downstream jobs on success.",
+      "evaluation_criteria": "Delta Lake mastery, error handling, dependency management, production patterns"
+    },
+    {
+      "id": 23,
+      "topic": "Databricks",
+      "difficulty": "intermediate",
+      "type": "multiple_choice",
+      "text": "What is the advantage of Delta Lake over standard data lake architectures?",
+      "options": [
+        "ACID transactions, schema enforcement, time travel, and data versioning",
+        "Faster query performance without any trade-offs",
+        "Automatic data optimization without configuration",
+        "No need for data quality checks"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Delta Lake advantages"
+    },
+    {
+      "id": 24,
+      "topic": "Databricks",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "How would you optimize a Databricks cluster for a specific ML workload? Consider: cluster types, node configurations, auto-scaling, and caching strategies.",
+      "evaluation_criteria": "Cluster optimization knowledge, performance tuning, cost considerations, workload-specific choices"
+    },
+    {
+      "id": 25,
+      "topic": "ML Fundamentals",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What does overfitting indicate in machine learning?",
+      "options": [
+        "The model performs well on training data but poorly on unseen data",
+        "The model is too simple",
+        "The model uses too few features",
+        "The training dataset is too large"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Understanding of overfitting"
+    },
+    {
+      "id": 26,
+      "topic": "ML Fundamentals",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is the purpose of cross-validation in machine learning?",
+      "options": [
+        "To estimate model performance on unseen data by training on different data subsets",
+        "To automatically tune hyperparameters",
+        "To remove outliers from the dataset",
+        "To speed up model training"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Cross-validation understanding"
+    },
+    {
+      "id": 27,
+      "topic": "ML Fundamentals",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "Walk through your process for evaluating a classification model. What metrics would you use and why? How would you choose between precision, recall, and F1-score?",
+      "evaluation_criteria": "Model evaluation knowledge, metrics understanding, business context alignment, threshold selection"
+    },
+    {
+      "id": 28,
+      "topic": "ML Fundamentals",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "Describe the bias-variance tradeoff in machine learning. How do you balance these two sources of error?",
+      "evaluation_criteria": "Bias-variance understanding, regularization knowledge, model complexity tradeoffs"
+    },
+    {
+      "id": 29,
+      "topic": "ML Fundamentals",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Build a complete model evaluation framework that handles: multiple classification metrics, threshold optimization, cross-validation, and A/B testing comparison.\n\nConsider edge cases like class imbalance and different business objectives (cost-sensitive decisions).",
+      "evaluation_criteria": "Model evaluation depth, metrics implementation, validation strategy, business-aware design"
+    },
+    {
+      "id": 30,
+      "topic": "ML Fundamentals",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Implement an ensemble learning approach that combines multiple base learners. Handle: weighted voting, calibration, and out-of-fold predictions. Evaluate on multiple metrics.",
+      "evaluation_criteria": "Ensemble methods knowledge, stacking/bagging/boosting understanding, proper evaluation"
+    },
+    {
+      "id": 31,
+      "topic": "ML Fundamentals",
+      "difficulty": "intermediate",
+      "type": "multiple_choice",
+      "text": "What is the difference between supervised and unsupervised learning?",
+      "options": [
+        "Supervised uses labeled data; unsupervised finds patterns in unlabeled data",
+        "Supervised is for classification; unsupervised is for regression",
+        "Unsupervised is faster than supervised learning",
+        "Supervised learning requires more data than unsupervised"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Learning paradigm understanding"
+    },
+    {
+      "id": 32,
+      "topic": "ML Fundamentals",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "How would you approach feature selection for a high-dimensional dataset? Discuss multiple strategies and their tradeoffs.",
+      "evaluation_criteria": "Feature selection methods, dimensionality reduction, information theory, computational efficiency"
+    },
+    {
+      "id": 33,
+      "topic": "MLOps",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is the primary goal of model monitoring in production?",
+      "options": [
+        "To detect performance degradation and data drift in real-time",
+        "To increase inference speed",
+        "To reduce model file size",
+        "To ensure models always improve over time"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Understanding of model monitoring importance"
+    },
+    {
+      "id": 34,
+      "topic": "MLOps",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is model deployment?",
+      "options": [
+        "Taking a trained model to production for making predictions on new data",
+        "Testing a model on a validation set",
+        "Optimizing model hyperparameters",
+        "Saving the model to disk"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Deployment concepts"
+    },
+    {
+      "id": 35,
+      "topic": "MLOps",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "Design an end-to-end MLOps pipeline for model lifecycle management. Address: data versioning, model training, testing, deployment, monitoring, and retraining triggers.",
+      "evaluation_criteria": "Pipeline design, automation, reproducibility, monitoring strategy, data/model versioning, rollback procedures"
+    },
+    {
+      "id": 36,
+      "topic": "MLOps",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "Explain how you would ensure reproducibility in ML experiments. What tools and practices are essential?",
+      "evaluation_criteria": "Reproducibility principles, seed management, environment management, version control, documentation"
+    },
+    {
+      "id": 37,
+      "topic": "MLOps",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Implement a monitoring system for model predictions that detects: data drift, prediction drift, and model performance degradation. Include alerting logic and recommend automated retraining triggers.\n\nConsider: statistical tests for drift, handling real-time data streams, and configurable thresholds.",
+      "evaluation_criteria": "Drift detection implementation, statistical rigor, real-time processing capability, alerting logic, automation"
+    },
+    {
+      "id": 38,
+      "topic": "MLOps",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Design a model serving infrastructure that supports: A/B testing, canary deployments, fallback mechanisms, and automatic rollback on failure. Include latency and throughput considerations.",
+      "evaluation_criteria": "Production deployment patterns, reliability engineering, testing strategies, observability"
+    },
+    {
+      "id": 39,
+      "topic": "MLOps",
+      "difficulty": "intermediate",
+      "type": "multiple_choice",
+      "text": "What is data drift in the context of ML models?",
+      "options": [
+        "When the distribution of input features changes over time compared to training data",
+        "Random fluctuations in model predictions",
+        "Loss of data during model training",
+        "Changes in model architecture after deployment"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Data drift concept"
+    },
+    {
+      "id": 40,
+      "topic": "MLOps",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "How would you build a comprehensive ML observability platform? Address: metrics collection, logging, tracing, alerting, and visualization.",
+      "evaluation_criteria": "Observability architecture, monitoring strategy, tool selection, operational efficiency"
+    },
+    {
+      "id": 41,
+      "topic": "Advanced Python",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is a Python decorator?",
+      "options": [
+        "A function that modifies or wraps another function or class",
+        "A variable that stores a reference to a function",
+        "A type of inheritance in Python",
+        "A built-in Python module"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Decorator understanding"
+    },
+    {
+      "id": 42,
+      "topic": "Advanced Python",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "Discuss the use of context managers in Python. Provide examples of when and why you would use them in production code.",
+      "evaluation_criteria": "Context manager usage, resource management, cleanup patterns, error handling"
+    },
+    {
+      "id": 43,
+      "topic": "ML Ecosystem",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What does StandardScaler do in scikit-learn?",
+      "options": [
+        "Scales features to have mean 0 and standard deviation 1",
+        "Removes outliers from the data",
+        "Automatically selects the best features",
+        "Converts categorical variables to numeric"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Feature scaling understanding"
+    },
+    {
+      "id": 44,
+      "topic": "ML Ecosystem",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "How would you handle class imbalance in a binary classification problem? Discuss multiple approaches and their trade-offs.",
+      "evaluation_criteria": "Imbalance handling techniques, sampling strategies, threshold adjustment, cost-sensitive learning"
+    },
+    {
+      "id": 45,
+      "topic": "Databricks",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "How would you implement an incremental data pipeline in Databricks? Discuss Delta Lake features that enable efficient incremental processing.",
+      "evaluation_criteria": "Incremental processing patterns, Delta operations, state management, efficiency optimization"
+    },
+    {
+      "id": 46,
+      "topic": "Databricks",
+      "difficulty": "beginner",
+      "type": "multiple_choice",
+      "text": "What is a Databricks cluster?",
+      "options": [
+        "A group of compute instances that run Apache Spark for distributed computing",
+        "A collection of data files in a data lake",
+        "A type of machine learning model",
+        "A database schema in Unity Catalog"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Cluster understanding"
+    },
+    {
+      "id": 47,
+      "topic": "ML Fundamentals",
+      "difficulty": "intermediate",
+      "type": "multiple_choice",
+      "text": "What is regularization in machine learning?",
+      "options": [
+        "A technique to prevent overfitting by adding a penalty term to the loss function",
+        "A method to normalize data before training",
+        "A way to select the best hyperparameters",
+        "A process to remove duplicate data points"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Regularization concept"
+    },
+    {
+      "id": 48,
+      "topic": "ML Fundamentals",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "Explain the differences between L1 and L2 regularization. When would you use each, and how do they affect feature selection?",
+      "evaluation_criteria": "L1/L2 understanding, sparsity concepts, feature selection implications"
+    },
+    {
+      "id": 49,
+      "topic": "MLOps",
+      "difficulty": "intermediate",
+      "type": "multiple_choice",
+      "text": "What is the purpose of model registry in ML systems?",
+      "options": [
+        "To manage model versions, track metadata, and facilitate deployment",
+        "To train multiple models in parallel",
+        "To optimize model inference speed",
+        "To automatically find the best model architecture"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Model registry purpose"
+    },
+    {
+      "id": 50,
+      "topic": "Advanced Python",
+      "difficulty": "intermediate",
+      "type": "multiple_choice",
+      "text": "What is the difference between *args and **kwargs in Python?",
+      "options": [
+        "*args passes variable positional arguments; **kwargs passes variable keyword arguments",
+        "*args is for tuples; **kwargs is for lists",
+        "They are the same thing with different names",
+        "*args is faster than **kwargs"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Function argument handling"
+    },
+    {
+      "id": 51,
+      "topic": "ML Ecosystem",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "How would you optimize PySpark code for machine learning workloads? Discuss partitioning, caching, and algorithmic optimizations.",
+      "evaluation_criteria": "PySpark optimization knowledge, partition strategy, memory management, performance tuning"
+    },
+    {
+      "id": 52,
+      "topic": "Databricks",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "Design a complete data governance solution using Databricks Unity Catalog. Address: access control, data lineage, quality rules, and compliance tracking.",
+      "evaluation_criteria": "Governance design, security architecture, compliance understanding, audit trails"
+    },
+    {
+      "id": 53,
+      "topic": "ML Fundamentals",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Implement hyperparameter tuning using Bayesian optimization. Compare it with Grid Search on a real dataset.",
+      "evaluation_criteria": "Optimization algorithm understanding, hyperparameter tuning, comparison methodology"
+    },
+    {
+      "id": 54,
+      "topic": "MLOps",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "How would you build a feature store for an organization? Address: feature engineering, versioning, and serving to multiple models.",
+      "evaluation_criteria": "Feature store architecture, feature engineering governance, serving patterns"
+    },
+    {
+      "id": 55,
+      "topic": "Advanced Python",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Design a thread-safe caching decorator that handles concurrent access and cache invalidation. Consider performance and correctness.",
+      "evaluation_criteria": "Concurrency knowledge, decorator implementation, cache strategies"
+    },
+    {
+      "id": 56,
+      "topic": "ML Ecosystem",
+      "difficulty": "intermediate",
+      "type": "multiple_choice",
+      "text": "What is the purpose of train-test split in machine learning?",
+      "options": [
+        "To estimate model performance on unseen data by separating training and evaluation data",
+        "To speed up model training",
+        "To increase model accuracy automatically",
+        "To reduce memory usage during training"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "Train-test split understanding"
+    },
+    {
+      "id": 57,
+      "topic": "Databricks",
+      "difficulty": "intermediate",
+      "type": "coding",
+      "text": "Write a Databricks notebook that demonstrates: data ingestion, transformation with Delta Lake, and creating ML features. Include error handling and logging.",
+      "evaluation_criteria": "Notebook structure, Delta operations, feature engineering, production readiness"
+    },
+    {
+      "id": 58,
+      "topic": "ML Fundamentals",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "How would you debug a model that's performing poorly? Discuss systematic approaches and common pitfalls.",
+      "evaluation_criteria": "Debugging methodology, error analysis, root cause investigation"
+    },
+    {
+      "id": 59,
+      "topic": "MLOps",
+      "difficulty": "intermediate",
+      "type": "coding",
+      "text": "Implement a CI/CD pipeline for machine learning models. Include: testing, validation, and automated deployment stages.",
+      "evaluation_criteria": "CI/CD understanding, automation patterns, testing strategies"
+    },
+    {
+      "id": 60,
+      "topic": "Advanced Python",
+      "difficulty": "intermediate",
+      "type": "open_ended",
+      "text": "Describe the concept of metaprogramming in Python. Provide practical examples of when you would use it in a data science library.",
+      "evaluation_criteria": "Metaprogramming understanding, practical applications, code generation"
+    },
+    {
+      "id": 61,
+      "topic": "ML Ecosystem",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "How would you build an automated feature engineering pipeline using scikit-learn's ColumnTransformer? Address: handling mixed data types and serialization.",
+      "evaluation_criteria": "ColumnTransformer mastery, mixed data handling, pipeline composition, reproducibility"
+    },
+    {
+      "id": 62,
+      "topic": "Databricks",
+      "difficulty": "advanced",
+      "type": "coding",
+      "text": "Implement a complex SQL query optimization scenario in Databricks. Handle: joins, aggregations, and window functions efficiently.",
+      "evaluation_criteria": "SQL optimization, execution plan understanding, performance tuning"
+    },
+    {
+      "id": 63,
+      "topic": "ML Fundamentals",
+      "difficulty": "beginner",
+      "type": "open_ended",
+      "text": "Explain what a confusion matrix is and how it's used to evaluate classification models.",
+      "evaluation_criteria": "Confusion matrix understanding, metric derivation, interpretation"
+    },
+    {
+      "id": 64,
+      "topic": "MLOps",
+      "difficulty": "beginner",
+      "type": "open_ended",
+      "text": "What is the difference between model training and model inference? Why is this distinction important in production?",
+      "evaluation_criteria": "Training vs inference understanding, production considerations, performance tradeoffs"
+    },
+    {
+      "id": 65,
+      "topic": "Advanced Python",
+      "difficulty": "beginner",
+      "type": "open_ended",
+      "text": "What are list comprehensions and when would you use them? Provide examples comparing to loops.",
+      "evaluation_criteria": "Comprehension syntax, performance benefits, readability"
+    },
+    {
+      "id": 66,
+      "topic": "ML Ecosystem",
+      "difficulty": "beginner",
+      "type": "open_ended",
+      "text": "Describe the steps of a typical machine learning workflow from data collection to deployment.",
+      "evaluation_criteria": "ML workflow understanding, end-to-end perspective, best practices"
+    },
+    {
+      "id": 67,
+      "topic": "Databricks",
+      "difficulty": "beginner",
+      "type": "open_ended",
+      "text": "What is the Medallion Architecture (bronze, silver, gold) in data warehousing? How does it apply to Databricks?",
+      "evaluation_criteria": "Architecture understanding, data quality layers, Databricks implementation"
+    },
+    {
+      "id": 68,
+      "topic": "ML Fundamentals",
+      "difficulty": "beginner",
+      "type": "open_ended",
+      "text": "What is the purpose of exploratory data analysis (EDA) in machine learning?",
+      "evaluation_criteria": "EDA importance, statistical understanding, visualization knowledge"
+    },
+    {
+      "id": 69,
+      "topic": "MLOps",
+      "difficulty": "beginner",
+      "type": "open_ended",
+      "text": "Why is version control important for ML projects? What should you version?",
+      "evaluation_criteria": "Version control benefits, ML-specific considerations, artifact management"
+    },
+    {
+      "id": 70,
+      "topic": "Advanced Python",
+      "difficulty": "intermediate",
+      "type": "coding",
+      "text": "Create a reusable data validation library using Python classes. Support: type checking, range validation, and custom rules.",
+      "evaluation_criteria": "Class design, validation patterns, error handling, reusability"
+    },
+    {
+      "id": 71,
+      "topic": "ML Ecosystem",
+      "difficulty": "intermediate",
+      "type": "coding",
+      "text": "Build a scikit-learn pipeline that includes: missing value imputation, categorical encoding, feature scaling, and model training.",
+      "evaluation_criteria": "Pipeline construction, transformer understanding, edge case handling"
+    },
+    {
+      "id": 72,
+      "topic": "Databricks",
+      "difficulty": "intermediate",
+      "type": "coding",
+      "text": "Write a Delta Lake transformation that: reads raw data, applies schema validation, and writes to a quality-checked table.",
+      "evaluation_criteria": "Delta operations, schema handling, quality checks, error handling"
+    },
+    {
+      "id": 73,
+      "topic": "ML Fundamentals",
+      "difficulty": "intermediate",
+      "type": "coding",
+      "text": "Implement a simple decision tree from scratch. Include: splitting logic, stopping criteria, and prediction.",
+      "evaluation_criteria": "Algorithm understanding, implementation correctness, optimization"
+    },
+    {
+      "id": 74,
+      "topic": "MLOps",
+      "difficulty": "intermediate",
+      "type": "coding",
+      "text": "Create a script that tracks ML experiment metrics using a simple file-based system. Support: parameter logging and result comparison.",
+      "evaluation_criteria": "Experiment tracking, file handling, data organization"
+    },
+    {
+      "id": 75,
+      "topic": "Advanced Python",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "How would you optimize a Python data processing pipeline for both memory and speed? Discuss specific techniques and tools.",
+      "evaluation_criteria": "Performance optimization, profiling knowledge, algorithmic improvements"
+    },
+    {
+      "id": 76,
+      "topic": "ML Ecosystem",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "Design an end-to-end feature engineering solution that handles: temporal features, categorical encoding, and feature interactions across multiple datasets.",
+      "evaluation_criteria": "Feature engineering depth, scalability, best practices, production readiness"
+    },
+    {
+      "id": 77,
+      "topic": "Databricks",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "How would you scale a machine learning pipeline from single-machine to distributed Databricks? Address: data parallelization and model training.",
+      "evaluation_criteria": "Scaling knowledge, distributed computing, Databricks-specific optimization"
+    },
+    {
+      "id": 78,
+      "topic": "ML Fundamentals",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "Explain transfer learning and when it's beneficial. Discuss fine-tuning strategies for different scenarios.",
+      "evaluation_criteria": "Transfer learning concepts, domain adaptation, optimization strategies"
+    },
+    {
+      "id": 79,
+      "topic": "MLOps",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "Design a complete ML governance framework for an enterprise. Address: model approval, audit trails, and compliance.",
+      "evaluation_criteria": "Governance strategy, compliance knowledge, organizational design"
+    },
+    {
+      "id": 80,
+      "topic": "Advanced Python",
+      "difficulty": "advanced",
+      "type": "open_ended",
+      "text": "How would you build a distributed computing framework for machine learning in Python? Discuss architecture and communication patterns.",
+      "evaluation_criteria": "Distributed systems knowledge, architecture design, communication protocols"
+    }
+  ]
+}
