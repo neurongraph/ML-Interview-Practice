@@ -36,6 +36,8 @@ class Session:
 
         if self.end_time:
             md += f"**End Time:** {self.end_time[11:19]}\n"
+        else:
+            md += f"**Last Updated:** {datetime.now().isoformat()[11:19]}\n"
 
         md += f"\n## Overall Score: {summary['overall_score']}/100\n\n"
 

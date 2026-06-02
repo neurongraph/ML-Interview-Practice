@@ -209,22 +209,49 @@ Each session stores which questions were asked, so you can resume and complete t
 - Instant feedback on correctness
 
 ### Open-Ended Questions
-- Answer with detailed explanations
+- Answer with detailed explanations (supports long answers!)
 - The LLM evaluator will assess your response based on:
   - Correctness and accuracy
   - Depth of understanding
   - Clarity of explanation
   - Relevant details and examples
-- Press Enter twice when finished
+- Type **END** on a new line when finished
 
 ### Coding Challenges
 - You'll be given a task or problem
-- Provide code (Python/pseudocode)
+- Provide code (Python/pseudocode) - supports long multi-line code!
 - Evaluation criteria:
   - Correctness
   - Code quality and readability
   - Performance and optimization
   - Best practices
+
+## Tips for Typing Answers
+
+- **No character limit**: You can write as long answers as needed
+- **Multi-line input**: Type normally across multiple lines
+- **Submit answer**: Type `END` on a new line to submit (not Enter twice!)
+- **Paste support**: Can paste code or long text directly
+
+## Features During Interview
+
+### Progress Tracking
+- Visual progress bar showing your position (█████░░░░)
+- Real-time score updates after each answer
+- Progress shown as: "Question 5/15 | Score: 85/100 | Progress: 5/15"
+
+### Time Tracking
+- Elapsed time shown during the interview
+- Total time displayed in final summary
+- Helps you pace yourself and monitor performance
+
+### Answer Feedback
+- Immediate feedback spinner while answers are being evaluated
+- Detailed evaluation results:
+  - Your score (0-100)
+  - Feedback on your answer
+  - Strengths (what you did well)
+  - Improvements (areas to work on)
 
 ## Scoring System
 

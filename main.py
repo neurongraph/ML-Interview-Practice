@@ -1,8 +1,9 @@
 import typer
 from typing import Optional
+from datetime import datetime
 from rich.console import Console
 from rich.panel import Panel
-from rich.syntax import Syntax
+from rich.progress import Progress, SpinnerColumn, TextColumn
 from questions import QuestionBank, QuestionType
 from session import Session
 from evaluator import Evaluator
@@ -22,7 +23,7 @@ def start():
         console.print(
             Panel(
                 "[bold red]Error:[/bold red] Ollama is not running.\n"
-                "Please start Ollama with: ollama run mistral\n"
+                "Please start Ollama with: ollama run ministral\n"
                 "Then try again.",
                 title="Ollama Not Available",
             )
@@ -90,7 +91,8 @@ def resume():
         Panel(
             f"[bold green]Resuming Interview[/bold green]\n"
             f"Progress: {session.get_progress()}\n"
-            f"Current Score: {summary['overall_score']}/100",
+            f"Current Score: {summary['overall_score']}/100\n"
+            f"Time Elapsed: {_get_elapsed_time(session.start_time)}",
             title="Session Resumed",
         )
     )
@@ -116,9 +118,11 @@ def status():
         raise typer.Exit(0)
 
     summary = session.get_summary()
+    elapsed = _get_elapsed_time(session.start_time)
 
     status_text = f"Progress: {session.get_progress()}\n"
     status_text += f"Overall Score: {summary['overall_score']}/100\n"
+    status_text += f"Time Elapsed: {elapsed}\n"
     status_text += f"Status: {'Complete' if session.is_complete() else 'In Progress'}\n\n"
     status_text += "[bold]Score by Topic:[/bold]\n"
 
@@ -131,11 +135,13 @@ def status():
 def _ask_question(question, session, evaluator, bank):
     question_num = session.current_question_idx + 1
     total = bank.get_total_count()
+    progress_bar = "█" * question_num + "░" * (total - question_num)
 
     console.print()
     console.print(
         f"[bold cyan]Question {question_num}/{total}[/bold cyan] "
-        f"[dim]({question.topic} - {question.difficulty})[/dim]"
+        f"[dim]({question.topic} - {question.difficulty})[/dim]\n"
+        f"[dim][{progress_bar}][/dim]"
     )
     console.print(f"[bold]{question.text}[/bold]")
 
@@ -146,20 +152,18 @@ def _ask_question(question, session, evaluator, bank):
         user_answer = typer.prompt("Your answer (0-3)")
     else:
         console.print(
-            "\n[bold yellow]Provide your detailed answer (for multi-line, press Enter twice when done):[/bold yellow]"
+            "\n[bold yellow]Provide your detailed answer (type END on a new line when done):[/bold yellow]"
         )
-        lines = []
-        while True:
-            line = input()
-            if line == "":
-                if lines and lines[-1] == "":
-                    break
-                lines.append(line)
-            else:
-                lines.append(line)
-        user_answer = "\n".join(lines[:-1])
+        user_answer = _get_multiline_input()
 
-    result = evaluator.evaluate(question, user_answer)
+    # Show progress spinner while evaluating
+    with Progress(
+        SpinnerColumn(),
+        TextColumn("[progress.description]{task.description}"),
+        console=console,
+    ) as progress:
+        progress.add_task("[cyan]Evaluating your answer...", total=None)
+        result = evaluator.evaluate(question, user_answer)
 
     session.record_answer(
         question.id,
@@ -180,11 +184,23 @@ def _ask_question(question, session, evaluator, bank):
     )
 
     summary = session.get_summary()
-    console.print(f"[dim]Current Average: {summary['overall_score']}/100[/dim]")
+    elapsed = _get_elapsed_time(session.start_time)
+    next_num = question_num + 1
+
+    if not session.is_complete():
+        console.print(
+            f"[dim]Average Score: {summary['overall_score']}/100 | "
+            f"Progress: {session.get_progress()} | "
+            f"Elapsed: {elapsed} | "
+            f"Next: Question {next_num}[/dim]"
+        )
+    else:
+        console.print(f"[dim]Elapsed: {elapsed}[/dim]")
 
 
 def _show_summary(session):
     summary = session.get_summary()
+    elapsed = _get_elapsed_time(session.start_time)
 
     summary_text = f"[bold green]Overall Score: {summary['overall_score']}/100[/bold green]\n\n"
     summary_text += "[bold]Score by Topic:[/bold]\n"
@@ -194,6 +210,7 @@ def _show_summary(session):
         summary_text += f"  {topic:20} {score:3}/100 [{bar}]\n"
 
     summary_text += f"\n[dim]Completed: {summary['completed']}/{summary['total_questions']} questions[/dim]"
+    summary_text += f"\n[dim]Total Time: {elapsed}[/dim]"
 
     console.print(
         Panel(
@@ -217,6 +234,34 @@ def _show_recommendations(summary):
 
     if all(score >= 70 for score in summary["by_topic"].values()):
         console.print("[bold green]Great job! All topics are strong![/bold green]")
+
+
+def _get_multiline_input() -> str:
+    """Get multi-line input from user. Type 'END' on a new line to finish."""
+    lines = []
+    console.print("[dim]Tip: Type END on a new line to submit[/dim]")
+    try:
+        while True:
+            line = console.input()
+            if line.strip().upper() == "END":
+                break
+            lines.append(line)
+    except EOFError:
+        # Handle non-interactive mode
+        pass
+    return "\n".join(lines)
+
+
+def _get_elapsed_time(start_time_str: str) -> str:
+    """Calculate and format elapsed time."""
+    try:
+        start = datetime.fromisoformat(start_time_str)
+        elapsed = datetime.now() - start
+        minutes = int(elapsed.total_seconds() // 60)
+        seconds = int(elapsed.total_seconds() % 60)
+        return f"{minutes}m {seconds}s"
+    except Exception:
+        return "N/A"
 
 
 if __name__ == "__main__":
