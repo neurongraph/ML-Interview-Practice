@@ -90,6 +90,11 @@ class Session:
     def create_new() -> "Session":
         return Session(session_id=str(uuid.uuid4()), current_question_idx=0)
 
+    def set_questions(self, questions: List) -> None:
+        """Store the question IDs for this session."""
+        self.question_ids = [q.id for q in questions]
+        self._save_all()
+
     @staticmethod
     def list_sessions() -> List[str]:
         return [f.stem for f in SCORES_DIR.glob("*.md")]
