@@ -264,6 +264,10 @@ OLLAMA_MODEL=ministral-3:14b
 
 # Ollama Server Address (default: http://localhost:11434)
 OLLAMA_HOST=http://localhost:11434
+
+# Request Timeout in seconds (default: 180)
+# Increase if you get timeout errors on slow systems
+OLLAMA_TIMEOUT=180
 ```
 
 ### Code Configuration
@@ -326,6 +330,26 @@ LLM evaluation takes time (10-30 seconds typically). This is normal. The app is 
 
 ### Model Download
 On first run with a model, Ollama will download it (can take a few minutes).
+
+### Timeout Errors
+
+If you get timeout errors during evaluation:
+
+```
+Failed to call Ollama: ... timeout
+```
+
+Increase the timeout in `.env`:
+
+```env
+# Increase from default 180 to 300 seconds
+OLLAMA_TIMEOUT=300
+```
+
+**When to increase timeout:**
+- Slow computer or network
+- Using larger models (llama2, dolphin-mixtral)
+- First evaluation after model load
 
 ### Changing Ollama Models
 

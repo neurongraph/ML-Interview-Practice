@@ -1,12 +1,13 @@
 import requests
 from typing import Dict
-from config import OLLAMA_HOST, OLLAMA_MODEL, EVALUATION_PROMPT_TEMPLATE, CODING_EVALUATION_PROMPT
+from config import OLLAMA_HOST, OLLAMA_MODEL, OLLAMA_TIMEOUT, EVALUATION_PROMPT_TEMPLATE, CODING_EVALUATION_PROMPT
 
 
 class OllamaClient:
-    def __init__(self, host: str = OLLAMA_HOST, model: str = OLLAMA_MODEL):
+    def __init__(self, host: str = OLLAMA_HOST, model: str = OLLAMA_MODEL, timeout: int = OLLAMA_TIMEOUT):
         self.host = host
         self.model = model
+        self.timeout = timeout
         self.endpoint = f"{host}/api/generate"
 
     def health_check(self) -> bool:
@@ -24,7 +25,7 @@ class OllamaClient:
         }
 
         try:
-            response = requests.post(self.endpoint, json=payload, timeout=60)
+            response = requests.post(self.endpoint, json=payload, timeout=self.timeout)
             response.raise_for_status()
 
             if stream:

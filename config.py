@@ -8,6 +8,7 @@ load_dotenv()
 # Ollama Configuration
 OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "ministral-3:14b")
+OLLAMA_TIMEOUT = int(os.getenv("OLLAMA_TIMEOUT", "180"))  # seconds
 
 # Scores Storage (local to project)
 SCORES_DIR = Path(__file__).parent / "scores"
