@@ -1,0 +1,830 @@
+{
+  "questions": [
+    {
+      "text": "Which of the following tools is primarily used in Python application development to create isolated environments to manage project-specific dependencies?",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "topic": "Python application development",
+      "options": [
+        "PyLint",
+        "venv",
+        "Pandas",
+        "PyTest"
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must identify venv as the standard tool for environment isolation, distinguishing it from linting, data analysis, and testing tools.",
+      "id": 1
+    },
+    {
+      "text": "In the context of Python web frameworks, which of the following is categorized as a 'micro-framework' due to its minimalist approach and lack of built-in database abstraction layers?",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "topic": "Python application development",
+      "options": [
+        "Flask",
+        "Django",
+        "FastAPI",
+        "Pyramid"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "The candidate must recognize Flask as a classic example of a micro-framework compared to 'batteries-included' frameworks like Django.",
+      "id": 2
+    },
+    {
+      "text": "Explain the purpose of using virtual environments in Python application development. Why is it considered a best practice to use a tool like venv or conda instead of installing packages globally, and how does this impact the deployment of an application?",
+      "type": "open_ended",
+      "difficulty": "beginner",
+      "topic": "Python application development",
+      "evaluation_criteria": [
+        "Definition of a virtual environment as an isolated directory for dependencies",
+        "Explanation of dependency conflict prevention (avoiding version clashes between different projects)",
+        "Discussion on reproducibility across different development machines",
+        "Mention of the requirements.txt file or environment lock files for deployment",
+        "Impact on the global system Python installation (preventing corruption/bloat)"
+      ],
+      "id": 3
+    },
+    {
+      "text": "Compare and contrast a micro-framework like Flask with a full-stack framework like Django. In what scenarios would you choose one over the other, and what does the 'batteries-included' philosophy of Django mean for a developer?",
+      "type": "open_ended",
+      "difficulty": "beginner",
+      "topic": "Python application development",
+      "evaluation_criteria": [
+        "Correct distinction between a micro-framework (minimal core) and a full-stack framework",
+        "Explanation of 'batteries-included' as providing built-in tools like an ORM, admin panel, and authentication",
+        "Identification of Flask as suitable for small apps, microservices, or highly customized architectures",
+        "Identification of Django as suitable for large-scale, data-driven applications requiring rapid development",
+        "Understanding of the trade-off between flexibility/control (Flask) and speed of initial setup (Django)"
+      ],
+      "id": 4
+    },
+    {
+      "text": "Create a simple Python application that implements the Singleton design pattern to manage a global application configuration. \n\nRequirements:\n1. Create a class named `AppConfig` that ensures only one instance of the class exists throughout the application's lifecycle.\n2. The class should allow setting and getting a configuration value (e.g., 'api_url').\n3. Demonstrate that two different variables assigned to the class result in the same object instance.\n4. Include a `requirements.txt` file content in a comment at the top of your code listing a mock framework dependency (e.g., `flask==2.0.1`) to demonstrate basic environment management awareness.",
+      "type": "coding",
+      "difficulty": "beginner",
+      "topic": "Python application development",
+      "evaluation_criteria": "Expected approach: Use the `__new__` method or a decorator to implement the Singleton pattern. The candidate should show that `id(instance1) == id(instance2)`. Edge cases: Ensure the singleton persists across multiple calls. Performance: Time complexity for instantiation should be O(1). Environment management: Presence of a requirements.txt format listing dependencies.",
+      "id": 5
+    },
+    {
+      "text": "When building a large-scale Python application, which design pattern is most appropriate for creating a central point of access to a shared resource (like a database connection pool) while ensuring only one instance of that resource exists throughout the application lifecycle?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Python application development",
+      "options": [
+        "Factory Method",
+        "Observer",
+        "Singleton",
+        "Strategy"
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "The candidate must identify that the Singleton pattern is specifically used to restrict a class to a single instance and provide a global point of access to it.",
+      "id": 6
+    },
+    {
+      "text": "In the context of Python environment management, what is the primary technical advantage of using a 'lock file' (e.g., poetry.lock or Pipfile.lock) over a standard requirements.txt file?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Python application development",
+      "options": [
+        "It allows the installation of packages from private git repositories",
+        "It ensures deterministic builds by locking the exact versions of all transitive dependencies",
+        "It reduces the total disk space required for the virtual environment",
+        "It automatically updates dependencies to the latest stable version upon installation"
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must understand that lock files solve the 'dependency hell' problem by recording the specific version of every package in the dependency tree, not just the top-level requirements.",
+      "id": 7
+    },
+    {
+      "text": "When developing a REST API with FastAPI, which mechanism is the recommended way to handle cross-cutting concerns such as authentication, logging, or database session management for multiple endpoints?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Python application development",
+      "options": [
+        "Dependency Injection system",
+        "Global variable state",
+        "Inheriting from a BaseAPI class",
+        "Monkey-patching the Starlette request object"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "The candidate should recognize that FastAPI's 'Depends' system is the idiomatic way to implement reusable logic and shared resources across different route handlers.",
+      "id": 8
+    },
+    {
+      "text": "Compare and contrast the Singleton and Factory design patterns in the context of a Python application. When would you choose one over the other, and what are the Python-specific ways to implement them (e.g., using modules or decorators)?",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Python application development",
+      "evaluation_criteria": "1. Correct definition of Singleton and Factory patterns. 2. Explanation of the trade-offs between shared global state (Singleton) and object creation abstraction (Factory). 3. Mention of Pythonic implementations, such as using the module-level caching for Singletons. 4. Practical scenario for each pattern (e.g., database connection pool vs. plugin system). 5. Discussion on testability and how Singletons can complicate unit testing.",
+      "id": 9
+    },
+    {
+      "text": "Explain the differences between using a virtual environment (venv), a dependency manager like Poetry or Pipenv, and a containerization tool like Docker for environment management. In a professional production pipeline, how do these tools complement each other?",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Python application development",
+      "evaluation_criteria": "1. Understanding that venv provides basic isolation of site-packages. 2. Explanation of deterministic builds via lock files (poetry.lock/Pipfile.lock). 3. Distinction between Python-level isolation and OS-level isolation (Docker). 4. Description of the workflow: local development (Poetry) -> CI/CD packaging -> Production deployment (Docker). 5. Mention of reproducibility across different operating systems.",
+      "id": 10
+    },
+    {
+      "text": "When choosing between a micro-framework like Flask/FastAPI and a full-stack framework like Django, what architectural factors influence your decision? Specifically, discuss how these choices impact application scalability and development speed.",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Python application development",
+      "evaluation_criteria": "1. Analysis of 'batteries-included' (Django) vs. 'modular' (FastAPI/Flask) philosophies. 2. Discussion on the overhead of a full ORM and admin panel vs. the effort of selecting and integrating third-party libraries. 3. Mention of asynchronous support (ASGI) in FastAPI for high-concurrency needs. 4. Comparison of development speed for CRUD apps (Django) vs. specialized microservices (FastAPI). 5. Impact on the learning curve and maintenance of the codebase.",
+      "id": 11
+    },
+    {
+      "text": "Implement a thread-safe Singleton class in Python that manages application configuration. The class should load a set of default settings from a dictionary and allow updating specific settings. Ensure that regardless of how many times the class is instantiated, only one instance exists. The implementation must be robust enough to handle concurrent access in a multi-threaded environment.",
+      "type": "coding",
+      "difficulty": "intermediate",
+      "topic": "Python application development",
+      "evaluation_criteria": "Expected approach: Use of the __new__ method or a metaclass to control instance creation, combined with a threading.Lock to prevent race conditions during instantiation. Edge cases: Handling concurrent calls to the constructor. Performance: The locking mechanism should only trigger during the first instantiation (Double-Checked Locking pattern) to avoid overhead on subsequent access.",
+      "id": 12
+    },
+    {
+      "text": "Design a simple dependency injection (DI) container for a Python application. Create a Container class that can register 'services' (callable factories or classes) and resolve them. The container must support 'singleton' services (returned once) and 'transient' services (new instance per request). Demonstrate its usage by resolving a 'DatabaseService' that depends on a 'ConfigService'.",
+      "type": "coding",
+      "difficulty": "intermediate",
+      "topic": "Python application development",
+      "evaluation_criteria": "Expected approach: A dictionary to store registered factories and a separate cache for singleton instances. The resolve method should recursively resolve dependencies of the requested service. Edge cases: Circular dependencies (should be identified or handled), requesting an unregistered service. Performance: Time complexity of resolution should be O(N) where N is the depth of the dependency tree.",
+      "id": 13
+    },
+    {
+      "text": "In a high-performance asynchronous Python application using FastAPI, you need to implement a 'Unit of Work' pattern to maintain database transaction integrity across multiple service layers. Which approach most effectively prevents the 'leaking' of database sessions and ensures consistent transaction boundaries in an async context?",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "topic": "Python application development",
+      "options": [
+        "Using a global singleton session object with a thread-local lock",
+        "Implementing a custom metaclass that injects the session into every service method",
+        "Utilizing an async context manager integrated with FastAPI's dependency injection system to manage session lifecycles",
+        "Defining the session as a class-level attribute within a BaseService abstract class"
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "The candidate must recognize that dependency injection combined with async context managers is the standard architectural pattern in FastAPI for ensuring scoped session management and proper cleanup.",
+      "id": 14
+    },
+    {
+      "text": "When managing complex Python environments for a large-scale enterprise application with strict reproducibility requirements across different OS architectures (Linux/macOS), which strategy provides the most robust protection against 'dependency drift' and ensures binary compatibility of C-extensions?",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "topic": "Python application development",
+      "options": [
+        "Using a requirements.txt file with non-pinned version ranges (e.g., >=1.2.0)",
+        "Using a lockfile-based manager like Poetry or PDM combined with multi-stage Docker builds for platform-specific wheels",
+        "Relying on conda-forge environments without specifying a lock file",
+        "Using virtualenvwrapper to synchronize environments across developer machines via shared NFS"
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must understand that lockfiles ensure deterministic dependency resolution (solving dependency drift) and that multi-stage Docker builds are necessary to handle architecture-specific binary compilations of C-extensions.",
+      "id": 15
+    },
+    {
+      "text": "Compare and contrast the implementation of the Dependency Injection pattern in a large-scale Python application using a framework like FastAPI versus a traditional monolithic approach. How does the choice of dependency management affect the application's testability and the overall lifecycle of shared resources (such as database connections or external API clients)?",
+      "type": "open_ended",
+      "difficulty": "advanced",
+      "topic": "Python application development",
+      "evaluation_criteria": "1. Explains the difference between manual dependency injection and framework-managed DI (e.g., FastAPI's Depends). 2. Discusses the impact on unit testing, specifically the ease of mocking/overriding dependencies. 3. Addresses resource lifecycle management (e.g., context managers, yield dependencies). 4. Analyzes the trade-offs between decoupling and the 'magic' introduced by framework-level abstractions. 5. Mentions the impact on application startup time and memory overhead.",
+      "id": 16
+    },
+    {
+      "text": "In a complex production environment utilizing microservices, evaluate the architectural trade-offs between using a single global virtual environment (e.g., via a Docker image) versus a multi-stage build process that separates build-time dependencies from runtime dependencies. How do you handle the conflict between requiring strict version pinning for stability and the need for security patches in a highly dynamic environment?",
+      "type": "open_ended",
+      "difficulty": "advanced",
+      "topic": "Python application development",
+      "evaluation_criteria": "1. Explains the security and size benefits of multi-stage Docker builds (reducing attack surface). 2. Discusses the role of lock files (e.g., poetry.lock or requirements.txt) in ensuring deterministic builds. 3. Analyzes the tension between immutable infrastructure and the need for rapid security patching. 4. Proposes a strategy for dependency updates (e.g., automated bots like Dependabot combined with CI/CD regression suites). 5. Mentions the impact of environment isolation on performance and deployment speed.",
+      "id": 17
+    },
+    {
+      "text": "Design and implement a thread-safe, asynchronous Plugin System for a data processing pipeline. Your implementation must meet the following requirements:\n\n1. **Design Pattern**: Implement a 'Plugin' architecture using the Observer or Strategy pattern, allowing third-party modules to be loaded dynamically from a specific directory at runtime without restarting the application.\n2. **Framework/Async**: Use `asyncio` to ensure that plugin execution is non-blocking. Each plugin should implement an `async` method called `process(data)`. \n3. **Environment Management**: Implement a mechanism to ensure plugins are loaded within a controlled environment (simulate this by validating that plugins only use a specific allowed set of dependencies provided in a configuration file).\n4. **Error Handling**: Implement a 'Circuit Breaker' logic: if a specific plugin fails (raises an exception) more than 3 times, it must be automatically disabled (unregistered) from the pipeline to prevent cascading failures.\n\nTask: Provide the code for the `PluginManager` class and a sample `Plugin` base class. Demonstrate the loading mechanism and the circuit breaker logic in a main execution loop.",
+      "type": "coding",
+      "difficulty": "advanced",
+      "topic": "Python application development",
+      "evaluation_criteria": "The candidate must demonstrate: 1. Use of `importlib` or `pkgutil` for dynamic module loading. 2. Correct use of `asyncio.gather` or `asyncio.as_completed` for concurrent plugin execution. 3. A robust state management system for the Circuit Breaker (tracking failure counts per plugin). 4. Proper use of abstract base classes (`abc.ABC`) to enforce the plugin interface. 5. Thread-safety considerations (e.g., using `asyncio.Lock` if the plugin registry is modified during execution). Performance should be O(N) where N is the number of plugins per data packet.",
+      "id": 18
+    },
+    {
+      "text": "What is 'Few-Shot Prompting' in the context of prompt engineering?",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "topic": "Prompt Engineering",
+      "options": [
+        "Writing a prompt that is very short and concise",
+        "Providing the model with a few examples of the desired input-output pairs before asking for a response",
+        "Reducing the number of tokens used in a request to save costs",
+        "Asking the model to generate only a few sentences of text"
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must identify that few-shot prompting involves providing examples to guide the model's behavior.",
+      "id": 19
+    },
+    {
+      "text": "Which of the following best describes the 'Chain-of-Thought' (CoT) prompting technique?",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "topic": "Prompt Engineering",
+      "options": [
+        "Linking multiple different LLMs together in a sequence",
+        "Using a recursive loop to refine a single answer",
+        "Increasing the temperature setting to allow for more creative paths",
+        "Encouraging the model to break down its reasoning into a series of intermediate steps"
+      ],
+      "correct_answer": 3,
+      "evaluation_criteria": "The candidate must recognize that Chain-of-Thought is about prompting the model to explain its reasoning process step-by-step.",
+      "id": 20
+    },
+    {
+      "text": "Explain the concept of 'Few-Shot Prompting' compared to 'Zero-Shot Prompting'. In what scenarios would you choose one over the other, and how does providing examples influence the model's output?",
+      "type": "open_ended",
+      "difficulty": "beginner",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "1. Clear definition of Zero-Shot prompting (no examples provided). 2. Clear definition of Few-Shot prompting (providing a few input-output pairs). 3. Identification of scenarios for Zero-Shot (simple, common tasks). 4. Identification of scenarios for Few-Shot (complex formatting, niche patterns, or specific tones). 5. Explanation of how examples guide the model's pattern recognition and output consistency.",
+      "id": 21
+    },
+    {
+      "text": "What is the 'Chain-of-Thought' (CoT) prompting technique, and why is it particularly effective for tasks involving logic or multi-step reasoning? Describe how you would implement it in a prompt.",
+      "type": "open_ended",
+      "difficulty": "beginner",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "1. Definition of Chain-of-Thought as prompting the model to show its intermediate reasoning steps. 2. Explanation that it decomposes complex problems into smaller, manageable parts. 3. Discussion on how it reduces hallucinations by forcing a logical progression. 4. Description of implementation (e.g., using phrases like 'Let's think step by step'). 5. Mention of how it allows the user to audit the model's logic for errors.",
+      "id": 22
+    },
+    {
+      "text": "You are tasked with building a simple Python wrapper for an LLM API to create a 'Customer Sentiment Classifier'. \n\nWrite a function `get_sentiment(text)` that takes a user review as input and returns only one of three labels: 'POSITIVE', 'NEGATIVE', or 'NEUTRAL'. \n\nRequirements:\n1. Implement a 'Few-Shot' prompting technique within your function by providing the model with three diverse examples of sentiment classification before the actual user input.\n2. Ensure the system prompt explicitly instructs the model to return ONLY the label and no conversational filler (e.g., no 'The sentiment is...').\n3. Handle the case where the input text is empty or contains only whitespace by returning 'INVALID' without calling the API.\n\nConstraints:\n- The prompt must be constructed as a single string or a list of messages (depending on your chosen API format).\n- Time complexity for the pre-processing check should be O(1) or O(n) relative to input length.",
+      "type": "coding",
+      "difficulty": "beginner",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "The candidate should demonstrate: 1. Correct implementation of Few-Shot prompting (providing input-output pairs). 2. Use of a system instruction to constrain the output format (Output Shaping). 3. Basic input validation for empty strings. 4. Correct string formatting to separate examples from the target query.",
+      "id": 23
+    },
+    {
+      "text": "Which of the following best describes the 'Chain-of-Thought' (CoT) prompting technique and its primary purpose?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Prompt Engineering",
+      "options": [
+        "A method of linking multiple independent LLM calls in a sequence to reduce token usage.",
+        "The process of providing a set of negative constraints to prevent the model from hallucinating.",
+        "Guiding the model to produce a series of intermediate reasoning steps before arriving at a final answer.",
+        "A technique where the model is prompted to rewrite its own output multiple times to improve fluency."
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "The candidate must identify that Chain-of-Thought is specifically about decomposing complex problems into intermediate reasoning steps to improve accuracy in tasks like math or logic.",
+      "id": 24
+    },
+    {
+      "text": "In the context of Few-Shot prompting, what is the primary risk of providing examples that are skewed toward a specific label or outcome?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Prompt Engineering",
+      "options": [
+        "The model may develop a majority label bias, predicting the most frequent label regardless of the input.",
+        "The model will automatically trigger a 'hallucination' mode due to pattern overfitting.",
+        "The prompt will exceed the context window limit more quickly than Zero-Shot prompting.",
+        "The model will stop following the provided format and revert to base model behavior."
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "The candidate should understand that the distribution of examples in few-shot prompting can introduce bias, where the model favors the most frequent class seen in the examples.",
+      "id": 25
+    },
+    {
+      "text": "When implementing 'Least-to-Most' prompting, how does the approach differ from standard Chain-of-Thought prompting?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Prompt Engineering",
+      "options": [
+        "It requires the model to generate the final answer first and then justify it backward.",
+        "It focuses exclusively on reducing the number of tokens used in the reasoning process.",
+        "It utilizes a larger set of examples but removes the reasoning steps from those examples.",
+        "It explicitly breaks a complex problem into smaller sub-problems and solves them sequentially before tackling the main problem."
+      ],
+      "correct_answer": 3,
+      "evaluation_criteria": "The candidate must distinguish Least-to-Most from CoT by recognizing the explicit decomposition of a problem into a hierarchy of simpler sub-problems.",
+      "id": 26
+    },
+    {
+      "text": "Compare and contrast 'Few-Shot Prompting' and 'Chain-of-Thought (CoT) Prompting'. In what specific scenarios would you choose one over the other, and how do they differ in their impact on the model's reasoning process?",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "1. Correct definition of Few-Shot (providing examples) vs CoT (guiding step-by-step reasoning). 2. Explanation that Few-Shot focuses on pattern matching/format, while CoT focuses on logical decomposition. 3. Identification of scenarios where CoT is superior (math, symbolic reasoning, complex logic). 4. Identification of scenarios where Few-Shot is sufficient (classification, sentiment analysis, specific formatting). 5. Discussion on how CoT reduces hallucinations by making the 'hidden' reasoning explicit.",
+      "id": 27
+    },
+    {
+      "text": "Explain the concept of 'Prompt Leakage' and 'Prompt Injection'. How does the design of a system prompt (system role) differ from a user prompt in mitigating these risks, and what structural techniques can you use to isolate instructions from user-provided data?",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "1. Clear distinction between Leakage (extracting the system prompt) and Injection (overriding instructions). 2. Explanation of the hierarchy between System messages and User messages. 3. Mention of delimiters (e.g., using triple quotes or XML tags) to separate data from instructions. 4. Discussion on the 'sandwich' technique or placing critical instructions at the end of the prompt. 5. Recognition that prompting alone is not a complete security solution and requires input validation.",
+      "id": 28
+    },
+    {
+      "text": "Describe the trade-offs between using a highly detailed, constraint-heavy prompt versus a more open-ended prompt. How do you determine the 'tipping point' where adding more instructions starts to degrade the model's performance or lead to 'instruction drift'?",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "1. Analysis of precision vs. creativity (over-constraining leads to robotic or rigid outputs). 2. Explanation of 'instruction drift' or the model ignoring middle instructions in long prompts (the 'lost in the middle' phenomenon). 3. Discussion on the impact of prompt length on latency and token cost. 4. Description of an iterative testing process (e.g., A/B testing prompts) to find the optimal balance. 5. Mention of the importance of prioritizing the most critical constraints.",
+      "id": 29
+    },
+    {
+      "text": "Implement a Python class called `FewShotPromptGenerator` that dynamically constructs a prompt for a sentiment analysis task. The class must take a small dataset of labeled examples (text and sentiment) and a target input string. \n\nRequirements:\n1. Implement a method `generate_prompt(target_text, k=3)` that selects `k` examples from the dataset to include as few-shot demonstrations.\n2. The prompt must follow a consistent pattern: 'Text: [example_text]\\nSentiment: [label]\\n---\\n'.\n3. Include a final instruction at the top of the prompt explicitly telling the model to output only the label (e.g., 'Positive' or 'Negative').\n4. Handle the edge case where `k` is larger than the total number of available examples.\n\nConstraints:\n- Time complexity for prompt generation should be O(k).\n- Space complexity should be O(N) where N is the total size of the final prompt string.",
+      "type": "coding",
+      "difficulty": "intermediate",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "The candidate should demonstrate the 'Few-Shot' technique. Expected approach includes: using a list or dictionary to store examples, implementing a slicing mechanism for 'k' examples, and using string joining or f-strings for efficient concatenation. Edge cases to consider: k > dataset length, empty dataset, and ensuring the target text is appended at the very end without a trailing label.",
+      "id": 30
+    },
+    {
+      "text": "Design a function `chain_of_thought_extractor(raw_llm_output)` that processes a model's response designed using the 'Chain-of-Thought' (CoT) technique. \n\nRequirements:\n1. Assume the LLM is prompted to think step-by-step and wrap its final answer in a specific tag, e.g., '<answer>Final Answer</answer>'.\n2. The function must extract the 'reasoning' part (everything before the tag) and the 'final answer' part (the content inside the tag) as a dictionary.\n3. If the tag is missing, the function should return a custom error or a dictionary indicating the output was malformed.\n4. Implement a cleaning step to remove redundant whitespace or newline characters from the extracted reasoning and answer.\n\nConstraints:\n- Use regular expressions for robust extraction.\n- Handle cases where multiple answer tags might appear by extracting only the last occurrence.",
+      "type": "coding",
+      "difficulty": "intermediate",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "The candidate should demonstrate understanding of how to programmatically handle CoT outputs. Evaluation focuses on the use of `re` module (specifically non-greedy matching or finding all occurrences), the ability to handle malformed LLM outputs (error handling), and the efficiency of string trimming. Performance is measured by the ability to handle large blocks of reasoning text without excessive memory overhead.",
+      "id": 31
+    },
+    {
+      "text": "When implementing a 'Chain-of-Thought' (CoT) prompting strategy for complex symbolic reasoning, which of the following phenomena most accurately describes the 'Faithfulness' problem?",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "topic": "Prompt Engineering",
+      "options": [
+        "The model's inability to maintain a consistent persona throughout a long reasoning chain.",
+        "The tendency of the model to generate a correct final answer while providing a logically flawed reasoning path.",
+        "The degradation of output quality when the prompt exceeds the model's effective context window.",
+        "The failure of the model to follow the few-shot examples provided in the prompt template."
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must identify that 'Faithfulness' refers to the alignment between the model's internal computation and its externalized reasoning trace (rationale), specifically where the reasoning is a post-hoc justification rather than the actual path to the answer.",
+      "id": 32
+    },
+    {
+      "text": "In the context of 'Least-to-Most Prompting', how does the architectural approach differ fundamentally from standard 'Few-Shot Chain-of-Thought' prompting?",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "topic": "Prompt Engineering",
+      "options": [
+        "It replaces natural language examples with structured JSON schema for better token efficiency.",
+        "It relies exclusively on zero-shot prompting to avoid biasing the model with specific examples.",
+        "It uses a recursive decomposition strategy to break a complex problem into sub-problems, solving them sequentially.",
+        "It optimizes the prompt by pruning irrelevant tokens using a secondary reward model."
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "The candidate must recognize that Least-to-Most prompting is a specific technique focused on problem decomposition (breaking a hard problem into simpler sub-problems) and using the answer of previous sub-problems to solve the next, whereas standard CoT simply asks the model to 'think step by step' within a single generation.",
+      "id": 33
+    },
+    {
+      "text": "Compare and contrast the architectural implications of using Few-Shot prompting versus Chain-of-Thought (CoT) prompting when scaling a system to handle complex, multi-step reasoning tasks. Under what specific conditions would you transition from a purely prompt-based reasoning approach to an algorithmic orchestration (like ReAct) or fine-tuning, and how do these decisions impact model latency and reliability?",
+      "type": "open_ended",
+      "difficulty": "advanced",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "A strong answer must cover: 1. The distinction between providing examples for pattern matching (Few-Shot) vs. inducing a latent reasoning process (CoT). 2. The trade-off between prompt token overhead (latency/cost) and the accuracy gained from detailed reasoning paths. 3. The 'brittleness' of CoT and why ReAct is necessary for grounding reasoning in real-world external data. 4. The decision boundary for fine-tuning, specifically when the required reasoning pattern is too complex or voluminous for the context window. 5. The impact on reliability, such as the risk of 'hallucinated' reasoning steps in long-form CoT.",
+      "id": 34
+    },
+    {
+      "text": "Discuss the theoretical and practical challenges of 'prompt leakage' and 'indirect prompt injection' in a production-grade RAG (Retrieval-Augmented Generation) pipeline. How can you design a prompt architecture that maintains a strict boundary between system instructions, retrieved context, and user input to mitigate these vulnerabilities without degrading the model's ability to synthesize information?",
+      "type": "open_ended",
+      "difficulty": "advanced",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "A strong answer must cover: 1. A clear explanation of the difference between direct injection (user input) and indirect injection (malicious data within retrieved documents). 2. Analysis of why standard delimiters (e.g., XML tags or Markdown) are often insufficient against sophisticated adversarial prompts. 3. Implementation of defensive strategies such as 'sandwiching' (placing system instructions after the context) or using separate LLM 'guardrail' calls for input validation. 4. The trade-off between strict constraint enforcement (which can lead to over-refusal) and the flexibility needed for high-quality synthesis. 5. Mention of the 'jailbreak' mechanism where the model is tricked into ignoring system prompts via persona adoption.",
+      "id": 35
+    },
+    {
+      "text": "Design and implement a 'Prompt Optimizer' module in Python that programmatically evolves a prompt to maximize the accuracy of a LLM on a specific classification task. \n\nRequirements:\n1. Implement a function `optimize_prompt(initial_prompt, dataset, model_client)` where `dataset` is a list of (input, label) pairs.\n2. Use a 'Meta-Prompting' technique: Create a secondary 'Optimizer LLM' prompt that analyzes the errors made by the primary prompt on the dataset and suggests iterative improvements to the prompt text.\n3. The module must implement a loop that runs for N iterations (or until convergence), updating the prompt and evaluating it against a validation set.\n4. Implement a mechanism to prevent 'prompt drift' (where the model solves the specific samples in the training set but loses generalizability) by maintaining a separate hold-out validation set.\n5. Return the final optimized prompt and the final accuracy score.\n\nConstraints:\n- Handle LLM API timeouts and rate limits using a retry mechanism.\n- Ensure the optimizer prompt handles cases where the LLM provides malformed prompt suggestions (e.g., not returning just the prompt text).",
+      "type": "coding",
+      "difficulty": "advanced",
+      "topic": "Prompt Engineering",
+      "evaluation_criteria": "The candidate must demonstrate:\n1. Implementation of an iterative feedback loop (Prompt -> Evaluation -> Error Analysis -> Optimization -> New Prompt).\n2. Correct application of Meta-Prompting: The optimizer prompt must specifically ask the LLM to analyze failure patterns (false positives/negatives) rather than just 'making it better'.\n3. Robustness: Inclusion of error handling for API calls and parsing logic to extract the suggested prompt from the LLM's response.\n4. Proper validation: Use of a distinct validation set to track performance and prevent overfitting to the training samples.\n5. Complexity: Efficient handling of the dataset to avoid redundant API calls across iterations.",
+      "id": 36
+    },
+    {
+      "text": "In the context of AI agents, what is the primary purpose of a 'skill'?",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "topic": "Agent Skills",
+      "options": [
+        "To increase the raw parameter count of the underlying LLM",
+        "To provide a reusable capability or specialized function the agent can invoke to complete a task",
+        "To replace the need for a system prompt",
+        "To store the long-term memory of user interactions"
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must identify that skills are functional capabilities or tools that extend the agent's ability to interact with the world or process specific data.",
+      "id": 37
+    },
+    {
+      "text": "When using a Model Context Protocol (MCP) to enable an agent to use subagents, how is the delegation typically handled?",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "topic": "Agent Skills",
+      "options": [
+        "The main agent merges its weights with the subagent's weights in real-time",
+        "The main agent deletes its own context to make room for the subagent",
+        "The main agent treats the subagent as a tool that can be called to perform a specialized subset of the goal",
+        "The subagent takes over the primary system prompt and disables the main agent"
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "The candidate should understand that subagents are integrated as specialized tools or skills that the primary agent orchestrates via the MCP framework.",
+      "id": 38
+    },
+    {
+      "text": "Can you explain the conceptual difference between a generic LLM prompt and a specific 'Agent Skill', and describe how defining skills as discrete tools helps an agent manage complex tasks?",
+      "type": "open_ended",
+      "difficulty": "beginner",
+      "topic": "Agent Skills",
+      "evaluation_criteria": "1. Distinction between general knowledge (LLM) and specialized capabilities (Skills). 2. Explanation of how skills provide structured inputs/outputs. 3. Concept of reducing the model's search space through defined toolsets. 4. How modular skills allow for easier debugging and updating without rewriting the entire system prompt.",
+      "id": 39
+    },
+    {
+      "text": "In the context of the Model Context Protocol (MCP), how does the interplay between a primary agent, its available tools, and the potential use of sub-agents allow for a more scalable architecture than a single-agent setup?",
+      "type": "open_ended",
+      "difficulty": "beginner",
+      "topic": "Agent Skills",
+      "evaluation_criteria": "1. Understanding that MCP standardizes how agents discover and interact with tools. 2. Explanation of the 'delegation' pattern where a primary agent assigns tasks to sub-agents. 3. Mention of context window management (preventing the main agent from being overwhelmed by too many tool definitions). 4. Concept of separation of concerns (specialized sub-agents for specific skill domains). 5. Basic understanding of how tools act as the interface between the agent and the external environment.",
+      "id": 40
+    },
+    {
+      "text": "Implement a simple 'Agent Skill Registry' that allows an agent to register tools (skills) and call them based on a tool name. Your implementation must handle the following: \n1. A method `register_skill(name, function)` to add a skill to the agent.\n2. A method `execute_skill(name, **kwargs)` that looks up the skill by name and executes it with the provided arguments.\n3. If a skill is not found, the agent should return a specific error message: 'Skill not found'.\n4. Simulate a 'Sub-agent' interaction by creating a skill called 'delegate_to_subagent' which simply prints 'Delegating task to sub-agent...' and returns a success string.",
+      "type": "coding",
+      "difficulty": "beginner",
+      "topic": "Agent Skills",
+      "evaluation_criteria": "The candidate should use a dictionary to map skill names to callable functions. Expected approach: use a class to encapsulate the registry. Edge cases to handle: calling a non-existent skill and passing incorrect arguments to a skill. Performance: Lookups should be O(1). The candidate must demonstrate understanding that a skill is essentially a wrapper around a tool or a call to another agent (sub-agent).",
+      "id": 41
+    },
+    {
+      "text": "In the context of Model Context Protocol (MCP), what is the primary architectural advantage of defining a 'skill' as a set of tool-calls coordinated by a subagent rather than as a single monolithic tool?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Agent Skills",
+      "options": [
+        "It eliminates the need for a Large Language Model (LLM) to reason about the sequence of steps",
+        "It reduces the token overhead by removing the tool definition from the prompt",
+        "It allows for dynamic error recovery and iterative refinement of steps within the skill execution",
+        "It guarantees a deterministic output regardless of the LLM's temperature setting"
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "The candidate must recognize that subagents provide a layer of autonomy and iterative reasoning (looping/checking) that a static single-tool call cannot achieve.",
+      "id": 42
+    },
+    {
+      "text": "When implementing an agent skill that relies on multiple MCP tools, which strategy best prevents 'context window pollution' as the skill executes a complex task?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Agent Skills",
+      "options": [
+        "Summarizing intermediate tool outputs before passing them back to the primary orchestrator",
+        "Increasing the max_tokens limit of the underlying LLM",
+        "Hard-coding the sequence of tool calls to avoid LLM reasoning steps",
+        "Using a larger context window model without altering the data flow"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "The candidate should identify that summarizing or filtering intermediate state is the standard way to maintain relevant context when subagents or complex skills produce voluminous tool outputs.",
+      "id": 43
+    },
+    {
+      "text": "Which of the following best describes the interplay between an 'Agent Skill' and an MCP 'Tool' in a hierarchical agent system?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Agent Skills",
+      "options": [
+        "Skills are the low-level API endpoints, while tools are the high-level reasoning patterns",
+        "Tools are the atomic capabilities provided by MCP servers, while skills are the logical compositions of those tools to achieve a goal",
+        "MCP tools can only be called by the primary agent and never by a skill-specialized subagent",
+        "Skills and tools are functionally identical; 'skill' is simply a marketing term for an MCP tool"
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must distinguish between the atomic nature of a tool (e.g., 'read_file') and the composite nature of a skill (e.g., 'analyze_ codebase').",
+      "id": 44
+    },
+    {
+      "text": "When designing a skill-based architecture for an agent, how do you decide whether a capability should be implemented as a simple tool call versus a dedicated sub-agent? Explain the trade-offs in terms of cognitive load on the LLM and state management.",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Agent Skills",
+      "evaluation_criteria": "1. Distinguishes between atomic tools (single function) and sub-agents (autonomous loops). 2. Discusses context window management and 'noise' reduction. 3. Explains how sub-agents can maintain their own internal state/memory. 4. Mentions the overhead of orchestration and hand-offs between agents. 5. Provides a clear scenario where a sub-agent is preferable to a tool.",
+      "id": 45
+    },
+    {
+      "text": "How does the Model Context Protocol (MCP) change the way agent skills are distributed and managed compared to traditional hard-coded tool definitions? Discuss the implications for skill interoperability and scalability.",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Agent Skills",
+      "evaluation_criteria": "1. Explains the separation of the tool server from the LLM client. 2. Discusses the standardization of resource and tool discovery. 3. Highlights the ability to swap or update skills without redeploying the core agent logic. 4. Addresses the scalability of adding new capabilities via external MCP servers. 5. Mentions the role of a unified protocol in reducing custom integration glue code.",
+      "id": 46
+    },
+    {
+      "text": "In a complex multi-agent system, how should the 'interplay' between a primary orchestrator and a specialized sub-agent be handled to prevent recursive loops or contradictory skill execution? Describe a strategy for managing delegation and verification.",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Agent Skills",
+      "evaluation_criteria": "1. Proposes a clear delegation pattern (e.g., hierarchical or blackboard architecture). 2. Explains the use of termination conditions or 'max-turn' limits to prevent infinite loops. 3. Describes a verification mechanism where the orchestrator validates the sub-agent's output before proceeding. 4. Discusses how to handle conflicts when two sub-agents provide contradicting results. 5. Mentions the importance of a shared state or context summary during the hand-off.",
+      "id": 47
+    },
+    {
+      "text": "Implement a 'Skill Dispatcher' for an agent that can dynamically route requests to either a local tool or a remote MCP (Model Context Protocol) sub-agent based on a provided skill registry. \n\nRequirements:\n1. Create a `SkillRegistry` that maps skill names to their type ('local' or 'mcp') and their specific endpoint/function.\n2. Implement a `dispatch_skill(skill_name, arguments)` function that:\n   - Validates if the skill exists.\n   - If 'local', executes the function directly.\n   - If 'mcp', simulates an async call to a sub-agent, including a timeout mechanism (e.g., 5 seconds).\n3. Handle the case where a sub-agent returns an error or times out by attempting a fallback to a 'generic_handler' local skill if available.\n\nConstraints:\n- The dispatcher must handle asynchronous calls for MCP agents.\n- Time complexity for lookup should be O(1).",
+      "type": "coding",
+      "difficulty": "intermediate",
+      "topic": "Agent Skills",
+      "evaluation_criteria": "Expected approach: Use a dictionary for the registry and async/await for MCP calls. The candidate should implement a try-except-finally block or a timeout wrapper (like asyncio.wait_for). Edge cases to handle: Missing skill names, malformed arguments, and MCP timeouts. Performance: O(1) lookup via hash map.",
+      "id": 48
+    },
+    {
+      "text": "Design and implement a 'Hierarchical Skill Orchestrator' that manages the interplay between a primary agent and specialized sub-agents. \n\nRequirements:\n1. Implement a `SkillOrchestrator` class that can decompose a complex user query into a sequence of skill calls.\n2. The orchestrator must support 'Dependency Chaining': if Skill B requires the output of Skill A, the orchestrator must pass the result of A into B.\n3. Implement a 'Permission Layer': before executing an MCP sub-agent skill, the orchestrator must check a `permissions_map` to verify if the agent has the required scope (e.g., 'read', 'write', 'admin').\n4. If a sub-agent fails, the orchestrator should be able to 'retry' the skill once with a modified 'simplified' argument set before failing the entire chain.\n\nConstraints:\n- The system must be modular, allowing new sub-agents to be added without modifying the core orchestrator logic.\n- Ensure that the state (intermediate results) is maintained across the chain.",
+      "type": "coding",
+      "difficulty": "intermediate",
+      "topic": "Agent Skills",
+      "evaluation_criteria": "Expected approach: Use a pipeline or DAG-like structure to handle skill dependencies. The permission check should be a middleware-style function executed before the tool call. Edge cases: Circular dependencies in skill chains and permission denials. Performance: Efficient state management (e.g., a shared context object) to avoid redundant data copying.",
+      "id": 49
+    },
+    {
+      "text": "When implementing a hierarchical agent architecture using the Model Context Protocol (MCP), how should a primary agent optimally handle a 'skill' that requires the coordinated execution of multiple specialized sub-agents and external tools?",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "topic": "Agent Skills",
+      "options": [
+        "By flattening all sub-agent tool definitions into the primary agent's global context window to reduce latency.",
+        "By delegating the skill to a coordinator sub-agent that manages the tool-calling loop and returns only the synthesized final state to the primary agent.",
+        "By hard-coding a sequential execution chain in the system prompt to prevent the LLM from hallucinating the tool sequence.",
+        "By utilizing a shared global memory bus where sub-agents write raw tool outputs for the primary agent to parse asynchronously."
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must recognize that for advanced agent skills, delegation to a coordinator sub-agent prevents context window saturation (token bloat) and maintains a clean separation of concerns between high-level planning and low-level tool orchestration.",
+      "id": 50
+    },
+    {
+      "text": "In the context of Agent Skills, what is the primary architectural risk of allowing a sub-agent to dynamically discover and invoke MCP tools without a predefined skill schema enforced by the parent agent?",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "topic": "Agent Skills",
+      "options": [
+        "The sub-agent will be unable to utilize the Model Context Protocol's transport layer.",
+        "It increases the probability of 'tool-looping' where the agent enters an infinite recursion of discovery calls.",
+        "It leads to 'state drift' and unpredictable side effects because the parent agent loses the ability to validate the state transitions of the overall skill execution.",
+        "MCP tools are incompatible with dynamic discovery and require static registration at the server level."
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "The candidate should identify that without a schema or 'skill' boundary enforced by the parent, the system loses observability and control over the state machine, making it impossible to guarantee the deterministic completion of a complex task.",
+      "id": 51
+    },
+    {
+      "text": "When designing a multi-agent system using the Model Context Protocol (MCP), how do you architect the boundary between a 'skill' (intrinsic capability) and a 'tool' (external resource), and how does this distinction impact the orchestration of sub-agents in a hierarchical swarm? Discuss the implications for context window management and the delegation of authority when a sub-agent must decide whether to execute a tool locally or request a higher-level skill from a supervisor.",
+      "type": "open_ended",
+      "difficulty": "advanced",
+      "topic": "Agent Skills",
+      "evaluation_criteria": [
+        "Clear definition of the conceptual boundary between skills (reasoning patterns/capabilities) and tools (API/external interfaces).",
+        "Explanation of how MCP standardizes tool discovery and how this affects sub-agent autonomy.",
+        "Analysis of the trade-offs regarding context window saturation when passing tool definitions across multiple agent layers.",
+        "Discussion on 'delegation logic'\u2014how a sub-agent determines when a task exceeds its toolset and requires a supervisor's skill.",
+        "Mention of state management or session persistence when transitioning tasks between sub-agents via MCP."
+      ],
+      "id": 52
+    },
+    {
+      "text": "Evaluate the trade-offs between implementing complex agent skills as monolithic, high-parameter prompts versus decomposing them into a network of specialized sub-agents utilizing MCP-based tool sharing. In a scenario where an agent must perform a multi-step synthesis task (e.g., analyzing a codebase, proposing a fix, and verifying it via a test suite), how does the interplay between skill decomposition and tool access affect the 'lost in the middle' phenomenon and overall reliability of the agent's output?",
+      "type": "open_ended",
+      "difficulty": "advanced",
+      "topic": "Agent Skills",
+      "evaluation_criteria": [
+        "Comparison of monolithic prompting (few-shot/chain-of-thought) vs. modular sub-agent architectures.",
+        "Technical explanation of how decomposing skills reduces the noise-to-signal ratio in the context window.",
+        "Analysis of the 'lost in the middle' phenomenon in the context of large tool-definitions and multi-step reasoning.",
+        "Discussion on how MCP allows for dynamic tool-loading to keep the active context lean.",
+        "Evaluation of reliability and error propagation when a skill is split across multiple sub-agents."
+      ],
+      "id": 53
+    },
+    {
+      "text": "Design and implement a 'Dynamic Skill Orchestrator' that manages the interaction between a primary agent and multiple sub-agents connected via the Model Context Protocol (MCP). \n\nYour task is to implement a system where the primary agent does not have a fixed toolset, but instead discovers and invokes 'skills' provided by sub-agents based on the current goal state. \n\nRequirements:\n1. Implement a `SkillRegistry` that handles MCP-style tool discovery, allowing sub-agents to register their capabilities with metadata (input schemas, cost, and priority).\n2. Implement an `OrchestrationLoop` that:\n    - Analyzes a high-level user query.\n    - Dynamically selects the most appropriate sub-agent(s) based on the skill registry.\n    - Manages a shared 'Context Window' (State) that is passed between sub-agents to ensure consistency (e.g., if Sub-Agent A retrieves a file ID, Sub-Agent B should be able to use that ID without re-querying).\n    - Implements a 'Fallback Mechanism': if a sub-agent's skill fails or returns an invalid response, the orchestrator must attempt to find an alternative skill from a different sub-agent that satisfies the same requirement.\n3. Handle 'Recursive Skill Invocation': Allow a sub-agent to request a skill from the primary orchestrator if it encounters a dependency it cannot solve internally.\n\nConstraints:\n- Time Complexity: The skill lookup mechanism must operate in O(1) or O(log N) relative to the number of registered skills.\n- Edge Cases: Handle circular dependencies between sub-agents (infinite loops), timeout scenarios for slow MCP servers, and schema mismatches between the primary agent's request and the sub-agent's expected input.",
+      "type": "coding",
+      "difficulty": "advanced",
+      "topic": "Agent Skills",
+      "evaluation_criteria": "Expected Approach: The candidate should use a Registry pattern for skill management and a State Machine or Directed Acyclic Graph (DAG) for orchestration. They should implement a common interface for MCP tools to ensure interoperability. \n\nEdge Cases: Evaluation will look for explicit checks for circularity (e.g., using a recursion depth limit or a visited-node set), robust error handling for malformed JSON responses from sub-agents, and the use of a shared state object (blackboard pattern) to prevent data loss between agent hand-offs.\n\nPerformance: The skill discovery should be optimized via indexing/hashing rather than linear searching through all sub-agent metadata.",
+      "id": 54
+    },
+    {
+      "text": "In the context of multi-agent patterns, which design pattern describes a structure where a single 'manager' agent delegates tasks to several 'worker' agents and aggregates their results?",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "topic": "Agent frameworks and harnesses",
+      "options": [
+        "Peer-to-peer mesh",
+        "Hub-and-spoke (or Orchestrator)",
+        "Sequential chain",
+        "Autonomous swarm"
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must identify the orchestrator/hub-and-spoke pattern where a central agent manages the distribution and collection of work.",
+      "id": 55
+    },
+    {
+      "text": "What is the primary purpose of an 'observability' layer within an agent harness?",
+      "type": "multiple_choice",
+      "difficulty": "beginner",
+      "topic": "Agent frameworks and harnesses",
+      "options": [
+        "To increase the maximum token limit of the LLM",
+        "To automatically rewrite the agent's system prompt",
+        "To provide a way to trace and inspect the internal reasoning steps and tool calls of an agent",
+        "To encrypt the communication between the agent and the user"
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "The candidate should understand that observability in agent frameworks refers to the ability to monitor, trace, and debug the execution flow (e.g., Thought/Action/Observation loops).",
+      "id": 56
+    },
+    {
+      "text": "Can you explain the conceptual difference between a single-agent system and a multi-agent pattern? In your explanation, describe a scenario where moving from a single agent to a multi-agent architecture would be beneficial and how the agents would typically interact.",
+      "type": "open_ended",
+      "difficulty": "beginner",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": "1. Defines a single-agent system as one entity handling all tasks. 2. Defines multi-agent patterns as decomposing a complex goal into specialized roles. 3. Provides a concrete scenario (e.g., a researcher agent and a writer agent). 4. Explains the interaction mechanism, such as a manager agent or a sequential hand-off. 5. Mentions the benefit of reduced prompt complexity or increased accuracy through specialization.",
+      "id": 57
+    },
+    {
+      "text": "What is an agent harness, and why is observability critical when developing agents compared to traditional software? Describe the specific types of data or logs you would need to monitor to determine if an agent is failing during a complex task.",
+      "type": "open_ended",
+      "difficulty": "beginner",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": "1. Defines an agent harness as the environment/infrastructure used to run, test, and evaluate agents. 2. Explains that agents are non-deterministic, making observability more critical than in traditional code. 3. Identifies key monitoring data such as the full prompt/completion chain (trace). 4. Mentions tracking tool-call arguments and their outputs. 5. Discusses the importance of observing the 'reasoning' steps (e.g., Thought/Action/Observation) to debug logical loops.",
+      "id": 58
+    },
+    {
+      "text": "Implement a basic Agent Harness that coordinates a simple two-agent pattern: a 'Researcher' agent and a 'Reviewer' agent. \n\nRequirements:\n1. Create an `Agent` class that takes a name and a mock function as its 'tool'.\n2. Implement a `Harness` class that manages the communication between agents.\n3. The harness must implement a linear sequence: The Researcher produces a string output, which is then passed as input to the Reviewer.\n4. Observability: The harness must log every single interaction (input and output) for both agents to a list called `execution_log` for later auditing.\n5. The final output of the harness should be the Reviewer's response.",
+      "type": "coding",
+      "difficulty": "beginner",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": "Expected approach: The candidate should define a class for Agents and a Orchestrator/Harness class. They should demonstrate a basic 'sequential' multi-agent pattern. Observability should be handled by appending dictionaries or tuples containing (agent_name, input, output) to a list. Edge cases: Handling empty inputs or agents that return None. Performance: Since this is beginner level, O(n) time complexity where n is the number of agents is expected.",
+      "id": 59
+    },
+    {
+      "text": "In a multi-agent system implementing a 'Hierarchical Orchestration' pattern, what is the primary responsibility of the Manager agent compared to Worker agents?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "Multi-agent patterns",
+      "options": [
+        "Executing the atomic tool calls and returning raw data to the user",
+        "Performing the final verification of the output without modifying the plan",
+        "Decomposing the high-level goal into sub-tasks and routing them to specialized agents",
+        "Maintaining the global shared memory state via a centralized vector database"
+      ],
+      "correct_answer": 2,
+      "evaluation_criteria": "The candidate must identify that hierarchical orchestration focuses on task decomposition and routing/delegation by a lead agent.",
+      "id": 60
+    },
+    {
+      "text": "When designing an observability layer for a complex agent harness, why is 'Trace ID propagation' considered more critical than simple 'Log aggregation'?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "observability",
+      "options": [
+        "It allows the developer to see the exact sequence of tool calls and LLM turns for a single request across multiple agents",
+        "It reduces the token cost by pruning redundant logs in the agent's history",
+        "It ensures that the LLM can access its own logs as a context window for self-correction",
+        "It eliminates the need for a deterministic state machine in the agent harness"
+      ],
+      "correct_answer": 0,
+      "evaluation_criteria": "The candidate must understand that traces provide the causality and sequencing necessary to debug non-deterministic multi-step agentic workflows.",
+      "id": 61
+    },
+    {
+      "text": "What is the primary purpose of an 'Agent Harness' (such as an evaluation framework) when testing a new agentic loop before production deployment?",
+      "type": "multiple_choice",
+      "difficulty": "intermediate",
+      "topic": "agent harness basics",
+      "options": [
+        "To provide a managed GPU environment for faster LLM inference",
+        "To replace the LLM with a deterministic set of if-else statements",
+        "To automatically rewrite the agent's prompts using a secondary LLM",
+        "To provide a controlled environment for running benchmark datasets and measuring success rates against ground truth"
+      ],
+      "correct_answer": 3,
+      "evaluation_criteria": "The candidate should recognize that a harness is used for systematic evaluation, benchmarking, and validation of agent behavior.",
+      "id": 62
+    },
+    {
+      "text": "Compare and contrast a 'Hierarchical' multi-agent orchestration pattern with a 'Joint-Collaboration' (or Peer-to-Peer) pattern. In what specific production scenarios would you choose one over the other, and what are the primary trade-offs regarding latency and error propagation?",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": [
+        "Clear definition of Hierarchical pattern (manager agent delegating to workers).",
+        "Clear definition of Joint-Collaboration (agents communicating in a shared space or sequentially).",
+        "Discussion on latency (Hierarchical may add overhead; Joint may loop indefinitely).",
+        "Analysis of error propagation (Hierarchical allows for centralized validation; Joint can lead to 'cascading' hallucinations).",
+        "Contextual examples for each (e.g., complex software engineering vs. creative brainstorming)."
+      ],
+      "id": 63
+    },
+    {
+      "text": "Observability in agentic workflows is more complex than in standard REST APIs due to non-deterministic execution and long-running loops. How would you design a tracing and monitoring system to debug an agent that is stuck in an infinite loop or producing suboptimal results? What specific metadata should be captured beyond simple input/output logs?",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": [
+        "Explanation of 'Trace' vs 'Log' in the context of LLM calls (e.g., Span IDs for nested tool calls).",
+        "Identification of key metadata: prompt templates, model versions, temperature, and tool-call arguments.",
+        "Proposal for detecting loops (e.g., state hashing, token limit monitoring, or iteration counters).",
+        "Mention of 'intermediate reasoning' or 'thought' logs (Chain-of-Thought) for debugging logic.",
+        "Discussion on the role of a feedback loop or human-in-the-loop (HITL) for observability."
+      ],
+      "id": 64
+    },
+    {
+      "text": "When building an agent harness for evaluation, how do you balance the need for 'determinism' in testing with the 'stochastic' nature of LLMs? Describe your approach to creating a robust evaluation harness that can distinguish between a failure in the agent's logic and a failure in the underlying model's generation.",
+      "type": "open_ended",
+      "difficulty": "intermediate",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": [
+        "Use of 'Golden Datasets' or fixed ground-truth expectations for harness testing.",
+        "Implementation of LLM-as-a-judge patterns to handle semantic similarity instead of exact string matching.",
+        "Techniques for reducing variance (e.g., temperature=0, fixed seeds, or multiple-shot consistency checks).",
+        "Separation of concerns: distinguishing between 'Tool Call Accuracy' (logic) and 'Response Quality' (generation).",
+        "Mention of regression testing or versioning prompts to isolate variables."
+      ],
+      "id": 65
+    },
+    {
+      "text": "Implement a 'Manager-Worker' multi-agent orchestration pattern. You need to create a Manager agent that receives a complex task, decomposes it into at least two sub-tasks, assigns them to specialized Worker agents, and aggregates their results into a final response. Requirement: Implement a shared state object (blackboard) that allows the Manager to track the completion status and output of each worker. The system must handle a 'retry' mechanism: if a Worker returns an empty or invalid response, the Manager must re-assign the task once more before marking it as failed.",
+      "type": "coding",
+      "difficulty": "intermediate",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": "Expected approach: Implementation of a coordination loop where the Manager acts as the central controller. Use of a shared dictionary or class to maintain state. Edge cases to handle: Worker failure/timeouts, invalid output formats, and the maximum retry limit. Performance considerations: Ensure the orchestrator doesn't enter an infinite loop and manages the state transitions linearly or concurrently depending on the task dependencies.",
+      "id": 66
+    },
+    {
+      "text": "Design and implement a lightweight Agent Observability Harness. The harness must wrap an agent's execution call and automatically capture: 1) The exact prompt sent to the LLM, 2) The raw response, 3) Token usage (simulated or actual), and 4) The wall-clock latency of the call. The harness must support 'Trace IDs' to link multiple sequential agent calls into a single session. Provide a method to export these traces as a structured JSON log. Constraint: The harness should be implemented as a decorator or a wrapper class so it can be applied to any agent function without modifying the core agent logic.",
+      "type": "coding",
+      "difficulty": "intermediate",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": "Expected approach: Use of the Decorator pattern in Python or a Wrapper class to intercept function calls. Implementation of a context manager or a global state to track Trace IDs. Edge cases: Handling exceptions within the agent call so that the harness still logs the failure and latency. Performance considerations: Minimizing the overhead introduced by the observability layer (e.g., avoiding synchronous I/O blocking during logging).",
+      "id": 67
+    },
+    {
+      "text": "In a complex multi-agent system utilizing a 'Hierarchical Orchestration' pattern, what is the primary architectural purpose of introducing a 'Manager' agent as a separate layer from the 'Worker' agents regarding state management and observability?",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "topic": "Agent frameworks and harnesses",
+      "options": [
+        "To allow worker agents to maintain a shared global state without the need for a centralized database",
+        "To decouple the high-level goal decomposition and delegation logic from the low-level task execution, enabling discrete tracking of planning versus execution latency",
+        "To eliminate the need for a feedback loop between the worker agents and the environment",
+        "To ensure that all agent communications occur via a peer-to-peer broadcast mechanism to avoid single points of failure"
+      ],
+      "correct_answer": 1,
+      "evaluation_criteria": "The candidate must recognize that hierarchical patterns are designed to separate the 'planner' (Manager) from the 'executor' (Worker), which is critical for observability (distinguishing where a failure occurred: in the plan or the execution) and state control.",
+      "id": 68
+    },
+    {
+      "text": "When designing a robust evaluation harness for an autonomous agent, which approach most effectively addresses the 'stochastic drift' problem where an agent passes a test case due to lucky sampling rather than a reliable policy?",
+      "type": "multiple_choice",
+      "difficulty": "advanced",
+      "topic": "Agent frameworks and harnesses",
+      "options": [
+        "Increasing the temperature of the LLM to ensure a wider variety of outputs during a single run",
+        "Implementing a deterministic seed for the LLM and running the test case exactly once",
+        "Replacing the LLM-based evaluator with a simple regex-based string match for all assertions",
+        "Utilizing Monte Carlo sampling across multiple independent trajectories and calculating the success rate (pass@k) with confidence intervals"
+      ],
+      "correct_answer": 3,
+      "evaluation_criteria": "The candidate must identify that stochasticity in agents requires probabilistic evaluation (sampling multiple paths/trajectories) rather than single-point testing or deterministic locking, as the latter masks the agent's instability in production.",
+      "id": 69
+    },
+    {
+      "text": "Compare and contrast the architectural trade-offs between a hierarchical (manager-worker) multi-agent pattern and a peer-to-peer (choreographed) pattern. In your explanation, address how each approach impacts state management, the risk of infinite loops (circular dependencies), and the overall scalability of the system as the number of specialized agents increases.",
+      "type": "open_ended",
+      "difficulty": "advanced",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": [
+        "Explains the central control and delegation mechanism of hierarchical patterns vs. the event-driven nature of choreographed patterns.",
+        "Analyzes state management, specifically how a manager maintains a global state versus agents maintaining local/shared state in P2P.",
+        "Discusses the 'infinite loop' problem, noting that managers can explicitly prune paths while P2P requires sophisticated termination logic or TTLs.",
+        "Evaluates scalability, mentioning the manager as a potential bottleneck vs. the increased complexity of coordination in P2P.",
+        "Provides a concrete scenario where one pattern is clearly superior to the other."
+      ],
+      "id": 70
+    },
+    {
+      "text": "Designing a comprehensive observability layer for non-deterministic agentic workflows is significantly more complex than traditional software logging. Describe how you would build an agent harness that captures 'reasoning traces' and 'tool-call causality'. How would you implement a mechanism to differentiate between a failure in the LLM's planning logic versus a failure in the external tool's execution within the observability stack?",
+      "type": "open_ended",
+      "difficulty": "advanced",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": [
+        "Proposes a structured tracing method (e.g., Span-based or Graph-based) to link prompts, thoughts, and actions.",
+        "Explains the implementation of 'causality tracking' to map which specific reasoning step triggered which specific tool call.",
+        "Describes a method for isolating failures, such as comparing the expected tool output (predicted by the agent) against the actual tool return value.",
+        "Discusses the storage and visualization of these traces for retrospective debugging (e.g., using OpenTelemetry or specialized agent trace logs).",
+        "Addresses the challenge of 'noise' in traces and how to implement meaningful aggregation or filtering for high-volume agentic loops."
+      ],
+      "id": 71
+    },
+    {
+      "text": "Design and implement a high-observability Multi-Agent Orchestration Harness that supports a 'Hierarchical Manager' pattern. The system must coordinate a Manager agent and at least two specialized Worker agents to solve a complex task (e.g., a multi-step research and synthesis task). \n\nRequirements:\n1. **State Management**: Implement a shared global state (blackboard) and agent-specific private states.\n2. **Observability Layer**: Create a middleware or wrapper that intercepts every inter-agent communication to log: timestamp, sender, receiver, token usage, and 'thought' trace (internal monologue).\n3. **Control Loop**: Implement a mechanism for the Manager to delegate tasks, receive results, and decide if a worker needs to 'retry' based on a validation check.\n4. **Harness Interface**: Provide a way to 'inject' mock responses into the workers to test the Manager's error-handling and loop-termination logic without calling an actual LLM.\n\nConstraints:\n- The system must prevent infinite loops (maximum turn limit).\n- Inter-agent communication must be asynchronous or simulated as such to prevent blocking.\n- Time complexity for state retrieval should be O(1).",
+      "type": "coding",
+      "difficulty": "advanced",
+      "topic": "Agent frameworks and harnesses",
+      "evaluation_criteria": "The candidate should be evaluated on:\n1. **Architectural Pattern**: Correct implementation of the Hierarchical Manager pattern where the Manager controls the flow and Workers execute atomic tasks.\n2. **Observability**: Use of a Decorator or Observer pattern to capture telemetry without polluting the core agent logic.\n3. **Harnessing**: Ability to decouple the Agent logic from the LLM provider using an interface or adapter, allowing for the requested 'mock injection' for deterministic testing.\n4. **Edge Case Handling**: Graceful handling of maximum iteration limits, empty worker responses, and state conflicts.\n5. **Performance**: Efficient state management using a centralized store and non-blocking communication patterns.",
+      "id": 72
+    }
+  ]
+}

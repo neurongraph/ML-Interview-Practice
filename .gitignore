@@ -50,8 +50,9 @@ scores/*.json
 # Generated question banks for user-created profiles
 # (profile.json configs ARE committed; generated questions.json are local)
 profiles/*/questions.json
-# Exception: the curated ml-engineering questions are committed
+# Exception: the curated ml-engineering and ai-engineer questions are committed
 !profiles/ml-engineering/questions.json
+!profiles/ai-engineer/questions.json
 
 # Logs
 *.log

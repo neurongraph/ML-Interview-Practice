@@ -1,0 +1,82 @@
+{
+  "name": "ai-engineer",
+  "description": "AI Engineer for GenAI applications",
+  "total_questions_per_interview": 15,
+  "topics": [
+    {
+      "name": "Python application development",
+      "subtopics": [
+        "design patterns",
+        "environment management",
+        "key frameworks"
+      ],
+      "question_count": 16,
+      "difficulty_mix": {
+        "beginner": 4,
+        "intermediate": 8,
+        "advanced": 4
+      },
+      "type_mix": {
+        "multiple_choice": 6,
+        "open_ended": 6,
+        "coding": 4
+      }
+    },
+    {
+      "name": "Prompt Engineering",
+      "subtopics": [
+        "Basics of prompt engineering",
+        "techniques"
+      ],
+      "question_count": 16,
+      "difficulty_mix": {
+        "beginner": 4,
+        "intermediate": 8,
+        "advanced": 4
+      },
+      "type_mix": {
+        "multiple_choice": 6,
+        "open_ended": 6,
+        "coding": 4
+      }
+    },
+    {
+      "name": "Agent Skills",
+      "subtopics": [
+        "Basics of Agent skills",
+        "interplay with tools mcp subagents"
+      ],
+      "question_count": 16,
+      "difficulty_mix": {
+        "beginner": 4,
+        "intermediate": 8,
+        "advanced": 4
+      },
+      "type_mix": {
+        "multiple_choice": 6,
+        "open_ended": 6,
+        "coding": 4
+      }
+    },
+    {
+      "name": "Agent frameworks and harnesses",
+      "subtopics": [
+        "Multi-agent patterns",
+        "observability",
+        "agent harness basics"
+      ],
+      "question_count": 16,
+      "difficulty_mix": {
+        "beginner": 4,
+        "intermediate": 8,
+        "advanced": 4
+      },
+      "type_mix": {
+        "multiple_choice": 6,
+        "open_ended": 6,
+        "coding": 4
+      }
+    }
+  ],
+  "created_at": "2026-06-02T22:35:03.196069"
+}
