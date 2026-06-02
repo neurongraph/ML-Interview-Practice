@@ -4,6 +4,11 @@ venv/
 env/
 ENV/
 
+# Environment variables
+.env
+.env.local
+.env.*.local
+
 # uv
 uv.lock
 

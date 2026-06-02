@@ -1,8 +1,13 @@
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Ollama Configuration
-OLLAMA_HOST = "http://localhost:11434"
-OLLAMA_MODEL = "mistral"
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "ministral-3:14b")
 
 # Scores Storage (local to project)
 SCORES_DIR = Path(__file__).parent / "scores"

@@ -13,10 +13,11 @@ brew install just          # macOS
 # or: cargo install just   # Any platform with Rust
 
 # 3. Install Ollama and start it
-ollama run mistral
+ollama run ministral-3:14b
 
 # 4. In a new terminal, set up the project
 cd ML_Interview_practice
+cp .env.example .env       # Create .env with default settings
 just install
 
 # 5. Start practicing!
@@ -96,17 +97,20 @@ cargo install just
 
 ```bash
 # Make sure Ollama is running first
-ollama run mistral
+ollama run ministral-3:14b
 
 # In another terminal, install just (if needed)
 brew install just  # macOS
 # or: cargo install just
 
 # Then set up the project
+cd ML_Interview_practice
+cp .env.example .env       # Create .env file with default settings
 just install
 ```
 
 This will:
+- Create a `.env` file with default configuration
 - Create a virtual environment with uv
 - Install all dependencies
 - Ready to go!
@@ -242,12 +246,33 @@ You can resume any incomplete session.
 
 ## Configuration
 
-Edit `config.py` to customize:
+### Environment Variables (.env)
 
-- `OLLAMA_HOST`: Address of Ollama server (default: `http://localhost:11434`)
-- `OLLAMA_MODEL`: LLM model to use (default: `mistral`)
-- `SESSION_DIR`: Where session data is stored
+Configuration is managed via a `.env` file. A `.env.example` file is provided:
+
+```bash
+# Copy the example to create your .env file
+cp .env.example .env
+```
+
+**Edit `.env` to customize:**
+
+```env
+# Ollama Model (default: ministral-3:14b)
+# Options: ministral-3:14b, granite4.1:8b, gemma4:e4b, phi4:latest
+OLLAMA_MODEL=ministral-3:14b
+
+# Ollama Server Address (default: http://localhost:11434)
+OLLAMA_HOST=http://localhost:11434
+```
+
+### Code Configuration
+
+For advanced configuration, edit `config.py`:
+
+- `SCORES_DIR`: Where score files are stored (default: `./scores`)
 - Evaluation prompts and criteria
+- Total questions per interview (default: 15)
 
 ## About uv
 
@@ -301,6 +326,31 @@ LLM evaluation takes time (10-30 seconds typically). This is normal. The app is 
 
 ### Model Download
 On first run with a model, Ollama will download it (can take a few minutes).
+
+### Changing Ollama Models
+
+To use a different model:
+
+```bash
+# 1. List available models
+ollama list
+
+# 2. Download a new model (if needed)
+ollama pull llama2
+
+# 3. Update .env file
+# Change: OLLAMA_MODEL=ministral-3:14b
+# To:     OLLAMA_MODEL=llama2
+
+# 4. Run interview
+just start
+```
+
+**Recommended models for interviews:**
+- **ministral-3:14b** (default) - Best quality, good for evaluations
+- **granite4.1:8b** - Lightweight alternative
+- **gemma4:e4b** - Fast and capable
+- **phi4:latest** - Memory efficient
 
 ## Example Workflow
 
