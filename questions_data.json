@@ -12,7 +12,7 @@
         "A module can contain packages, but not vice versa",
         "There is no difference; the terms are synonymous"
       ],
-      "correct_answer": 0,
+      "correct_answer": 3,
       "evaluation_criteria": "Understanding of Python package structure"
     },
     {
@@ -74,7 +74,7 @@
         "To run unit tests before installation",
         "To manage virtual environments"
       ],
-      "correct_answer": 0,
+      "correct_answer": 2,
       "evaluation_criteria": "Package distribution knowledge"
     },
     {
@@ -112,7 +112,7 @@
         "Distributed computing at scale",
         "Visualizing data in real-time"
       ],
-      "correct_answer": 0,
+      "correct_answer": 2,
       "evaluation_criteria": "Understanding of pandas role"
     },
     {
@@ -159,7 +159,7 @@
         "Converts models to different frameworks",
         "Distributes training across multiple machines"
       ],
-      "correct_answer": 0,
+      "correct_answer": 1,
       "evaluation_criteria": "MLflow tracking concepts"
     },
     {
@@ -182,7 +182,7 @@
         "To serve as a query optimization engine",
         "To manage cluster configurations"
       ],
-      "correct_answer": 0,
+      "correct_answer": 1,
       "evaluation_criteria": "Understanding of Unity Catalog purpose"
     },
     {
@@ -197,7 +197,7 @@
         "An MLflow experiment tracker",
         "A data governance tool"
       ],
-      "correct_answer": 0,
+      "correct_answer": 1,
       "evaluation_criteria": "Databricks jobs understanding"
     },
     {
@@ -244,7 +244,7 @@
         "Automatic data optimization without configuration",
         "No need for data quality checks"
       ],
-      "correct_answer": 0,
+      "correct_answer": 1,
       "evaluation_criteria": "Delta Lake advantages"
     },
     {
@@ -267,7 +267,7 @@
         "The model uses too few features",
         "The training dataset is too large"
       ],
-      "correct_answer": 0,
+      "correct_answer": 2,
       "evaluation_criteria": "Understanding of overfitting"
     },
     {
@@ -329,7 +329,7 @@
         "Unsupervised is faster than supervised learning",
         "Supervised learning requires more data than unsupervised"
       ],
-      "correct_answer": 0,
+      "correct_answer": 3,
       "evaluation_criteria": "Learning paradigm understanding"
     },
     {
@@ -414,7 +414,7 @@
         "Loss of data during model training",
         "Changes in model architecture after deployment"
       ],
-      "correct_answer": 0,
+      "correct_answer": 1,
       "evaluation_criteria": "Data drift concept"
     },
     {
@@ -437,7 +437,7 @@
         "A type of inheritance in Python",
         "A built-in Python module"
       ],
-      "correct_answer": 0,
+      "correct_answer": 1,
       "evaluation_criteria": "Decorator understanding"
     },
     {
@@ -460,7 +460,7 @@
         "Automatically selects the best features",
         "Converts categorical variables to numeric"
       ],
-      "correct_answer": 0,
+      "correct_answer": 2,
       "evaluation_criteria": "Feature scaling understanding"
     },
     {
@@ -506,7 +506,7 @@
         "A way to select the best hyperparameters",
         "A process to remove duplicate data points"
       ],
-      "correct_answer": 0,
+      "correct_answer": 1,
       "evaluation_criteria": "Regularization concept"
     },
     {
@@ -529,7 +529,7 @@
         "To optimize model inference speed",
         "To automatically find the best model architecture"
       ],
-      "correct_answer": 0,
+      "correct_answer": 1,
       "evaluation_criteria": "Model registry purpose"
     },
     {
@@ -599,7 +599,7 @@
         "To increase model accuracy automatically",
         "To reduce memory usage during training"
       ],
-      "correct_answer": 0,
+      "correct_answer": 1,
       "evaluation_criteria": "Train-test split understanding"
     },
     {

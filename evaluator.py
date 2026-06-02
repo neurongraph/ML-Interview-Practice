@@ -62,6 +62,18 @@ class Evaluator:
                 improvements="Please provide a thoughtful answer.",
             )
 
+        # Check for obviously low-effort responses
+        low_effort_phrases = ["i can't", "i don't", "dunno", "no idea", "idk", "pass", "skip"]
+        answer_lower = answer.lower().strip()
+
+        if any(phrase in answer_lower for phrase in low_effort_phrases) and len(answer.strip()) < 50:
+            return EvaluationResult(
+                score=5,
+                feedback="Insufficient effort - appears to be a low-effort response without genuine attempt.",
+                strengths="",
+                improvements="Please attempt to answer the question by providing your knowledge or reasoning.",
+            )
+
         result = self.ollama.evaluate_open_ended(
             question.text, answer, question.evaluation_criteria
         )
@@ -80,6 +92,18 @@ class Evaluator:
                 feedback="No code provided.",
                 strengths="",
                 improvements="Please provide a code solution.",
+            )
+
+        # Check for obviously low-effort responses
+        low_effort_phrases = ["i can't", "i don't", "dunno", "no idea", "idk", "pass", "skip"]
+        answer_lower = answer.lower().strip()
+
+        if any(phrase in answer_lower for phrase in low_effort_phrases) and len(answer.strip()) < 50:
+            return EvaluationResult(
+                score=5,
+                feedback="Insufficient effort - no code attempt provided.",
+                strengths="",
+                improvements="Please write functional code or pseudocode to solve the problem.",
             )
 
         result = self.ollama.evaluate_coding(question.text, answer)

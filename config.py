@@ -19,35 +19,44 @@ TOTAL_QUESTIONS = 15
 QUESTIONS_FILE = Path(__file__).parent / "questions_data.json"
 
 # Scoring Rubric for LLM Evaluation
-EVALUATION_PROMPT_TEMPLATE = """You are an expert evaluator for a technical interview.
-Evaluate the candidate's answer on a scale of 0-100 based on the following criteria:
-- Correctness and accuracy
-- Depth of understanding
-- Clarity of explanation
-- Relevant details and examples
+EVALUATION_PROMPT_TEMPLATE = """You are an expert technical interviewer. Rate this answer from 0-100.
+
+SCORING GUIDELINES:
+- 90-100: Excellent - Complete, accurate, well-explained with examples
+- 70-89: Good - Mostly correct with minor gaps or clarity issues
+- 50-69: Fair - Shows understanding but missing key details or has errors
+- 30-49: Poor - Incomplete or contains significant errors
+- 0-29: Very Poor - Irrelevant, completely incorrect, or no effort (e.g., "I don't know", "I can't answer")
 
 Question: {question}
+
 Candidate's Answer: {answer}
+
 Evaluation Criteria: {criteria}
 
-Provide your evaluation in the following format:
-SCORE: [0-100]
-FEEDBACK: [Brief explanation of the score]
-STRENGTHS: [What the candidate did well]
-IMPROVEMENTS: [What could be improved]"""
+You MUST respond with EXACTLY this format (fill each section completely):
 
-CODING_EVALUATION_PROMPT = """You are an expert Python/Databricks code reviewer.
-Evaluate the candidate's code on a scale of 0-100 based on:
-- Correctness (does it work?)
-- Code quality (readability, maintainability)
-- Performance (efficiency, optimization)
-- Best practices (following conventions and patterns)
+SCORE: [number 0-100]
+FEEDBACK: [1-2 sentences explaining the score]
+STRENGTHS: [1-2 specific things done well]
+IMPROVEMENTS: [2-3 specific areas to improve]"""
 
-Question/Task: {question}
-Candidate's Code: {answer}
+CODING_EVALUATION_PROMPT = """You are an expert Python/Databricks code reviewer. Evaluate this code solution.
 
-Provide your evaluation in the following format:
-SCORE: [0-100]
-FEEDBACK: [Brief explanation]
-STRENGTHS: [What the code does well]
-IMPROVEMENTS: [Specific suggestions for improvement]"""
+SCORING GUIDELINES:
+- 90-100: Excellent - Works correctly, clean code, handles edge cases, follows best practices
+- 70-89: Good - Works mostly correctly, minor issues or style problems
+- 50-69: Fair - Has the right idea but missing implementation, lacks error handling
+- 30-49: Poor - Significant errors, incomplete solution, poor practices
+- 0-29: Very Poor - Doesn't work, doesn't attempt the task, or trivial responses
+
+Task: {question}
+
+Candidate's Code/Solution: {answer}
+
+You MUST respond with EXACTLY this format (fill each section completely):
+
+SCORE: [number 0-100]
+FEEDBACK: [1-2 sentences on correctness and code quality]
+STRENGTHS: [1-2 specific strengths of the implementation]
+IMPROVEMENTS: [2-3 specific improvements needed]"""

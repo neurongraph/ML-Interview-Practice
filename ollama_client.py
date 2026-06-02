@@ -1,4 +1,5 @@
 import requests
+import re
 from typing import Dict
 from config import OLLAMA_HOST, OLLAMA_MODEL, OLLAMA_TIMEOUT, EVALUATION_PROMPT_TEMPLATE, CODING_EVALUATION_PROMPT
 
@@ -57,7 +58,7 @@ class OllamaClient:
         return self._parse_evaluation(response)
 
     def _parse_evaluation(self, response: str) -> Dict:
-        lines = response.strip().split("\n")
+        """Parse evaluation response with support for multi-line fields."""
         result = {
             "score": 0,
             "feedback": "",
@@ -65,22 +66,40 @@ class OllamaClient:
             "improvements": "",
         }
 
-        for line in lines:
-            if line.startswith("SCORE:"):
-                try:
-                    score_text = line.replace("SCORE:", "").strip()
-                    score = int("".join(filter(str.isdigit, score_text.split()[0])))
-                    result["score"] = max(0, min(100, score))
-                except (ValueError, IndexError):
-                    result["score"] = 50
+        # Extract SCORE
+        score_match = re.search(r'SCORE:\s*(\d+)', response, re.IGNORECASE)
+        if score_match:
+            try:
+                score = int(score_match.group(1))
+                result["score"] = max(0, min(100, score))
+            except ValueError:
+                result["score"] = 50
 
-            elif line.startswith("FEEDBACK:"):
-                result["feedback"] = line.replace("FEEDBACK:", "").strip()
+        # Extract FEEDBACK (until next section)
+        feedback_match = re.search(
+            r'FEEDBACK:\s*(.*?)(?=STRENGTHS:|IMPROVEMENTS:|$)',
+            response,
+            re.IGNORECASE | re.DOTALL
+        )
+        if feedback_match:
+            result["feedback"] = feedback_match.group(1).strip()
 
-            elif line.startswith("STRENGTHS:"):
-                result["strengths"] = line.replace("STRENGTHS:", "").strip()
+        # Extract STRENGTHS (until next section)
+        strengths_match = re.search(
+            r'STRENGTHS?:\s*(.*?)(?=IMPROVEMENTS?:|$)',
+            response,
+            re.IGNORECASE | re.DOTALL
+        )
+        if strengths_match:
+            result["strengths"] = strengths_match.group(1).strip()
 
-            elif line.startswith("IMPROVEMENTS:"):
-                result["improvements"] = line.replace("IMPROVEMENTS:", "").strip()
+        # Extract IMPROVEMENTS (until end)
+        improvements_match = re.search(
+            r'IMPROVEMENTS?:\s*(.*?)$',
+            response,
+            re.IGNORECASE | re.DOTALL
+        )
+        if improvements_match:
+            result["improvements"] = improvements_match.group(1).strip()
 
         return result
