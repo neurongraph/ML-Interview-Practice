@@ -22,7 +22,7 @@ cd ML-Interview-Practice
 cp .env.example .env
 just install
 
-# 5. Start practising (ML/Data Engineering profile included out of the box)
+# 5. Start practising (ML/Data Engineering or AI Engineer profiles included out of the box)
 just start
 ```
 
@@ -30,8 +30,9 @@ just start
 
 ## What's Included
 
-The repo ships with a ready-to-use **ML/Data Engineering** profile (80 curated questions):
+The repo ships with two ready-to-use profiles (64 curated questions each):
 
+### ML/Data Engineering
 | Topic | Questions |
 |---|---|
 | Advanced Python | 16 |
@@ -40,7 +41,15 @@ The repo ships with a ready-to-use **ML/Data Engineering** profile (80 curated q
 | ML Fundamentals | 16 |
 | MLOps | 16 |
 
-Each interview session randomly draws 15 questions (3 per topic), so you get a fresh mix every time across 4+ practice attempts.
+### AI Engineer
+| Topic | Questions |
+|---|---|
+| Python application development | 16 |
+| Prompt Engineering | 16 |
+| Agent Skills | 16 |
+| Agent frameworks and harnesses | 16 |
+
+Each interview session randomly draws 15 questions (3-4 per topic), so you get a fresh mix every time across 4+ practice attempts.
 
 ---
 
